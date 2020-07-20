@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   # Added this line because without a homepage,
   # heroku prod won't launch the site.
-  get "/", to: "merchants#index"
+  get "/", to: "welcome#index"
 
   get "/merchants", to: "merchants#index"
   get "/merchants/new", to: "merchants#new"
