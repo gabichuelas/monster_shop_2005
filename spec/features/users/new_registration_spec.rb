@@ -3,6 +3,16 @@ RSpec.describe 'As a visitor' do
     describe 'Then I am on the user registration page (\'register\')' do
       describe 'And I see a form where I input the following data: name, street address, city, state, zip code, email address, password, password confirmation' do
 
+        before :each do
+          # define form variables here for cleaner tests
+          # name =
+          # address =
+          # etc.
+
+          # create a User fixture here so we can use the same email address to test duplicate email error
+          existing_user = User.create!()
+        end
+
         it 'When I fill in this form completely, and with a unique email address, my details are saved in the db, then I am logged in as a registered user, I am taken to my profile page (\'/profile\'), I see a flash message indicating I am now registered and logged in' do
 
           visit "/"
@@ -45,9 +55,6 @@ RSpec.describe 'As a visitor' do
         end
 
         it 'If I fill out the registration form; But include an email address already in the system; Then I am returned to the registration page; My details are not saved and I am not logged in; The form is filled in with all previous data except the email field and password fields; I see a flash message telling me the email address is already in use' do
-
-          # create a User fixture here so we can use the same email address to test this error
-          existing_user = User.create!()
 
           visit "/register"
 
