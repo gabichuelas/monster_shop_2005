@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  # Added this line because without a homepage,
+  # heroku prod won't launch the site.
   get "/", to: "merchants#index"
-  
+
   get "/merchants", to: "merchants#index"
   get "/merchants/new", to: "merchants#new"
   get "/merchants/:id", to: "merchants#show"
