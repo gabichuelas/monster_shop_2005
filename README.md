@@ -225,7 +225,7 @@ This series of stories will allow a user to register on the site.
 
 
 ```
-[ ] done
+[X] done
 
 User Story 10, User Registration
 
@@ -251,7 +251,7 @@ I see a flash message indicating that I am now registered and logged in
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 11, User Registration Missing Details
 
@@ -263,7 +263,7 @@ And I see a flash message indicating that I am missing required fields
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 12, Registration Email must be unique
 
