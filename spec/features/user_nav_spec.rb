@@ -16,7 +16,7 @@ RSpec.describe 'As a default user' do
 
       visit '/'
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@existing_user)
-      
+
       within 'nav' do
         expect(page).to have_content('Home')
         expect(page).to have_content('All Items')

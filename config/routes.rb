@@ -42,9 +42,9 @@ Rails.application.routes.draw do
   get "/profile", to: "users#show"
 
   get "/login", to: "sessions#new"
-  delete "/logout", to: "sessions#destroy"
 
-  namespace :regular do
-    get "/profile", to: "dashboard#show"
+  namespace :user do
+    get "/profile", to: "users#show"
+    delete "/logout", to: "sessions#destroy"
   end
 end
