@@ -14,8 +14,8 @@ RSpec.describe 'As a default user' do
 
     it 'Plus the following links: /profile, /logout' do
 
-      visit '/'
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@existing_user)
+      visit '/'
 
       within 'nav' do
         expect(page).to have_content('Home')
@@ -28,8 +28,8 @@ RSpec.describe 'As a default user' do
 
         expect(page).to have_content('Profile')
         expect(page).to have_content('Logout')
-
-        expect(page).to have_content('Logged in as Norma Lopez')
+        
+        expect(page).to have_content('Logged in as Bob Vance')
       end
     end
   end

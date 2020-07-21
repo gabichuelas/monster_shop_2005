@@ -43,8 +43,8 @@ Rails.application.routes.draw do
 
   get "/login", to: "sessions#new"
 
-  namespace :user do
-    get "/profile", to: "users#show"
+  namespace :regular do
+    get "/", to: "dashboard#index"
     delete "/logout", to: "sessions#destroy"
   end
 end
