@@ -8,7 +8,8 @@ RSpec.describe 'As a default user' do
                                     state: "Colorado",
                                     zip: "80202",
                                     email: "example@hotmail.com",
-                                    password: "qwer")
+                                    password: "qwer",
+                                    role: 0)
     end
 
     it 'Plus the following links: /profile, /logout' do

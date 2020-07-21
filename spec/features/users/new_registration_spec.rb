@@ -11,7 +11,8 @@ RSpec.describe 'As a visitor' do
                                         state: "Colorado",
                                         zip: "80202",
                                         email: "example@hotmail.com",
-                                        password: "qwer")
+                                        password: "qwer",
+                                        role: 0)
 
           # define form variables here for cleaner tests
           @name = "Dan Harmon"
