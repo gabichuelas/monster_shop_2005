@@ -42,4 +42,10 @@ Rails.application.routes.draw do
   get "/profile", to: "users#show"
 
   get "/login", to: "sessions#new"
+
+  namespace :user do
+    get "/profile", to: "users#show"
+
+    delete "/logout", to: "sessions#destroy" 
+  end
 end
