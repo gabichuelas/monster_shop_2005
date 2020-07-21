@@ -3,6 +3,17 @@ require 'rails_helper'
 
 RSpec.describe 'Site Navigation' do
   describe 'As a Visitor' do
+    it "A link to return to welcome/home page" do
+
+      visit '/merchants'
+
+      within 'nav' do
+        click_link 'Home'
+      end
+
+      expect(current_path).to eq('/')
+    end
+
     it "I see a nav bar with links to all pages" do
       visit '/merchants'
 
