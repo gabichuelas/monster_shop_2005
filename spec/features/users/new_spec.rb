@@ -43,7 +43,7 @@ RSpec.describe 'As a visitor' do
           new_user = User.last
 
           allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@new_user)
-          
+
           expect(current_path).to eq("/profile")
 
           expect(page).to have_content("You are now registered and logged in")
@@ -63,7 +63,7 @@ RSpec.describe 'As a visitor' do
           fill_in :password_confirmation, with: @password
 
           click_on 'Register Now'
-          expect(current_path).to eq("/register")
+          expect(current_path).to eq("/users")
           expect(page).to have_content("State can't be blank")
         end
 
@@ -81,7 +81,7 @@ RSpec.describe 'As a visitor' do
           fill_in :password_confirmation, with: @password
 
           click_on 'Register Now'
-          expect(current_path).to eq("/register")
+          expect(current_path).to eq("/users")
           expect(page).to have_content("Email has already been taken")
         end
       end
