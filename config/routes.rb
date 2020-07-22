@@ -2,6 +2,16 @@ Rails.application.routes.draw do
 
   # Added this line because without a homepage,
   # heroku prod won't launch the site.
+  namespace :admin do
+    # get "/", to: "users#index"
+    get "/", to: "dashboard#index"
+    # get "/users/:id", to: "users#show"
+  end
+
+  namespace :merchant do
+    get "/", to: "dashboard#index"
+  end
+  
   get "/", to: "welcome#index"
 
   get "/merchants", to: "merchants#index"
@@ -46,13 +56,5 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new"
   delete "/logout", to: "sessions#destroy"
 
-  namespace :admin do
-    get "/", to: "users#index"
-    get "/admin", to: "dashboard#index"
-    # get "/users/:id", to: "users#show"
-  end
 
-  namespace :merchant do
-    get "/merchant", to: "dashboard#index"
-  end
 end
