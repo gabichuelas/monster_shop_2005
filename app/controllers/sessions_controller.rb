@@ -1,6 +1,15 @@
 class SessionsController < ApplicationController
   def new
-    # displays login form
+    if current_merchant?
+      redirect_to '/merchant'
+      flash[:success] = "Logged In"
+    elsif current_admin?
+      redirect_to '/admin'
+      flash[:success] = "Logged In"
+    elsif current_user
+      redirect_to '/profile'
+      flash[:success] = "Logged In"
+    end
   end
 
   def create

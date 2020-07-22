@@ -1,1 +1,7 @@
-<!-- LOGIN FORM -->
+<%= form_tag '/login', method: :post do %>
+  <%= label_tag :email %>
+  <%= text_field_tag :email %><br><br>
+  <%= label_tag :password %>
+  <%= text_field_tag :password %><br><br>
+  <%= submit_tag "Log In" %>
+<% end %>
