@@ -37,14 +37,17 @@ Rails.application.routes.draw do
   post "/orders", to: "orders#create"
   get "/orders/:id", to: "orders#show"
 
+  # REGISTER A NEW USER
   get "/register", to: "users#new"
-  post "/register", to: "users#create"
+  post "/users", to: "users#create"
   get "/profile", to: "users#show"
 
+  # LOGIN / LOGOUT SESSIONS
   get "/login", to: "sessions#new"
+  delete "/logout", to: "sessions#destroy"
 
-  namespace :regular do
-    get "/", to: "dashboard#index"
-    delete "/logout", to: "sessions#destroy"
+  namespace :admin do
+    get "/", to: "users#index"
+    # get "/users/:id", to: "users#show"
   end
 end

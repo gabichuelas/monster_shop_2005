@@ -1,14 +1,11 @@
 class UsersController <ApplicationController
 
   def new
+    # displays registration form
   end
 
   def show
-    if current_user
-      @user = User.find(session[:user_id])
-    else
-      render file: "/public/404"
-    end 
+    render file: "/public/404" unless current_user
   end
 
   def create
@@ -18,7 +15,7 @@ class UsersController <ApplicationController
       session[:user_id] = new_user.id
       redirect_to "/profile"
     else
-      flash[:errors] = new_user.errors.full_messages.to_sentence
+      flash[:errors] = new_user.errors.full_messages
       redirect_to "/register"
     end
   end
