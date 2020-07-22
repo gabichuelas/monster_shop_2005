@@ -160,7 +160,7 @@ Plus the following links:
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 5, Admin Navigation
 
@@ -175,7 +175,7 @@ Minus the following links/info
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 6, Visitor Navigation Restrictions
 
@@ -187,7 +187,7 @@ When I try to access any path that begins with the following, then I see a 404 e
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 7, User Navigation Restrictions
 
@@ -198,7 +198,7 @@ When I try to access any path that begins with the following, then I see a 404 e
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 8, Merchant Navigation Restrictions
 
@@ -208,7 +208,7 @@ When I try to access any path that begins with the following, then I see a 404 e
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 9, Admin Navigation Restrictions
 
