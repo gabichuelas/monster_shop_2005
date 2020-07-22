@@ -1,20 +1,28 @@
 <h1>Register a New User</h1>
-  <%= form_tag '/users', method: :post do %>
-    <%= label_tag :name%>
-    <%= text_field_tag :name %>
-    <%= label_tag :address%>
-    <%= text_field_tag :address%>
-    <%= label_tag :city%>
-    <%= text_field_tag :city %>
-    <%= label_tag :state%>
-    <%= text_field_tag :state%>
-    <%= label_tag :zip%>
-    <%= text_field_tag :zip %>
-    <%= label_tag :email%>
-    <%= text_field_tag :email %>
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
-    <%= label_tag :password_confirmation %>
-    <%= password_field_tag :password_confirmation %>
-    <%= submit_tag "Register Now" %>
-  <% end %>
+
+<%= form_tag '/users', method: :post do %>
+  <%= text_field_tag :name, (if @new_user != nil then @new_user.name else nil end)%>
+
+  <%= label_tag :address%>
+  <%= text_field_tag :address, (if @new_user != nil then @new_user.address else nil end)%>
+
+  <%= label_tag :city%>
+  <%= text_field_tag :city, (if @new_user != nil then @new_user.city else nil end)%>
+
+  <%= label_tag :state%>
+  <%= text_field_tag :state, (if @new_user != nil then @new_user.state else nil end)%>
+
+  <%= label_tag :zip%>
+  <%= text_field_tag :zip, (if @new_user != nil then @new_user.zip else nil end)%>
+
+  <%= label_tag :email%>
+  <%= text_field_tag :email %>
+
+  <%= label_tag :password %>
+  <%= password_field_tag :password %>
+
+  <%= label_tag :password_confirmation %>
+  <%= password_field_tag :password_confirmation %>
+
+  <%= submit_tag "Register Now" %>
+<% end %>
