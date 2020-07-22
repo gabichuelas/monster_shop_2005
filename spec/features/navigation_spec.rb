@@ -65,6 +65,19 @@ RSpec.describe 'Site Navigation' do
 
       expect(current_path).to eq('/register')
     end
+
+    it "When I try to access any path that begins with the following, then I see a 404 error:
+      /merchant, /admin, /profile" do
+
+      visit '/merchant'
+      expect(page).to eq('The page you were looking for doesn\'t exist.')
+
+      visit '/admin'
+      expect(page).to eq('The page you were looking for doesn\'t exist.')
+
+      visit '/profile'
+      expect(page).to eq('The page you were looking for doesn\'t exist.')
+    end
   end
 
   describe 'As a User' do
