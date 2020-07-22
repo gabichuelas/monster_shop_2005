@@ -12,7 +12,7 @@ RSpec.describe 'As a merchant employee' do
                                     role: 1)
     end
 
-    xit 'Plus the following link to my merchant dashboard \"/merchant\"' do
+    it 'Plus the following link to my merchant dashboard \"/merchant\"' do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant)
       visit '/'
@@ -26,9 +26,9 @@ RSpec.describe 'As a merchant employee' do
         expect(page).to_not have_content('Login')
         expect(page).to_not have_content('Register')
 
-        # expect(page).to have_content('Profile')
+        expect(page).to have_content('Profile')
         expect(page).to have_content('Logout')
-        # expect(page).to have_content('Merchant Dashboard')
+        expect(page).to have_content('Dashboard')
 
       end
     end
