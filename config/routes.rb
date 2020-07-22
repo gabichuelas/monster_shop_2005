@@ -40,4 +40,11 @@ Rails.application.routes.draw do
   get "/register", to: "users#new"
   post "/register", to: "users#create"
   get "/profile", to: "users#show"
+
+  get "/login", to: "sessions#new"
+
+  namespace :regular do
+    get "/", to: "dashboard#index"
+    delete "/logout", to: "sessions#destroy"
+  end
 end

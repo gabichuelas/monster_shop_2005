@@ -3,6 +3,14 @@ class UsersController <ApplicationController
   def new
   end
 
+  def show
+    if current_user
+      @user = User.find(session[:user_id])
+    else
+      render file: "/public/404"
+    end 
+  end
+
   def create
     new_user = User.new(user_params)
     if new_user.save
