@@ -160,7 +160,7 @@ Plus the following links:
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 5, Admin Navigation
 
