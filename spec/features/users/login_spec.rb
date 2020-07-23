@@ -20,8 +20,14 @@ RSpec.describe 'As a visitor' do
         fill_in :password, with: @existing_user.password
         click_on "Log In"
 
-        expect(current_path).to eq("/profile/#{@existing_user.id}")
-        expect(page).to have_content('Logged In')
+        expect(current_path).to eq("/profile")
+
+        expect(page).to_not have_content('Login')
+        expect(page).to_not have_content('Register')
+
+        expect(page).to have_content('Profile')
+        expect(page).to have_content('Logout')
+        expect(page).to have_content("Welcome, #{@existing_user.name}! You are now logged in.")
       end
     end
   end
