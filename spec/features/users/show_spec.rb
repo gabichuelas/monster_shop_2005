@@ -24,10 +24,11 @@ RSpec.describe 'As a registered user' do
       expect(page).to have_content('example@hotmail.com')
     end
 
-    it 'And I see a link to edit my profile data' do
+    it 'And I see a link to edit my profile data, and a link to change my password' do
 
       visit "/profile"
       expect(page).to have_link('Edit Profile')
+      expect(page).to have_link('Change Password')
     end
 
     describe 'When I click on the link to edit my profile data; I see a form like the registration page; The form is prepopulated with all my current information except my password' do
