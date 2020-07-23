@@ -405,7 +405,7 @@ And I see my updated information
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 21, User Can Edit their Password
 
@@ -421,7 +421,7 @@ And I see a flash message telling me that my password is updated
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 22, User Editing Profile Data must have unique Email address
 
