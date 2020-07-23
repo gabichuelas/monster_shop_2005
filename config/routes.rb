@@ -47,7 +47,7 @@ Rails.application.routes.draw do
 
   # REGISTER A NEW USER
   get "/register", to: "users#new"
-  post "/users", to: "users#create"
+  post "/register", to: "users#create"
   get "/profile", to: "users#show"
 
   # LOGIN / LOGOUT SESSIONS
