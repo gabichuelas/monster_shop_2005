@@ -14,18 +14,18 @@
       <%= link_to "All Merchants", "/merchants"%>
       <%= link_to "All Items", "/items"%>
       <% if current_admin? %>
-        <%= link_to "Logout", "/logout" %>
+        <%= link_to "Logout", "/logout", method: :delete %>
         <%= link_to "Profile", "/profile" %>
         <%= link_to "Dashboard", "/admin" %>
         <%= link_to "All Users", "/admin/users" %>
       <% elsif current_merchant? %>
-        <%= link_to "Logout", "/logout" %>
+        <%= link_to "Logout", "/logout", method: :delete %>
         <%= link_to "Profile", "/profile" %>
         <%= link_to "Dashboard", "/merchant" %>
         <%= link_to "Cart: #{cart.total_items}", "/cart" %>
       <% elsif current_user %>
         <%= link_to "Cart: #{cart.total_items}", "/cart" %>
-        <%= link_to "Logout", "/logout" %>
+        <%= link_to "Logout", "/logout", method: :delete %>
         <%= link_to "Profile", "/profile" %>
         <p>Logged in as <%= current_user.name %></p>
       <% else %>
