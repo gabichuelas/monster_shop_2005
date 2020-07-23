@@ -1,0 +1,10 @@
+<h1>Edit Your Profile</h1>
+<%= form_tag "/users/edit", method: :patch do %>
+  <%= text_field_tag :name, current_user.name, placeholder: 'Name' %><br>
+  <%= text_field_tag :address, current_user.address, placeholder: 'Address' %><br>
+  <%= text_field_tag :city, current_user.city, placeholder: 'City' %><br>
+  <%= text_field_tag :state, current_user.state, placeholder: 'State' %><br>
+  <%= text_field_tag :zip, current_user.zip, placeholder: 'Zip' %><br>
+  <%= text_field_tag :email, current_user.email, placeholder: 'Email' %><br>
+  <%= submit_tag 'Save Profile' %>
+<% end %>

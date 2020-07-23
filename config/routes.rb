@@ -55,4 +55,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete "/logout", to: "sessions#destroy"
 
+  # EDIT USER
+  get "/users/edit", to: "users#edit"
+  patch "/users/edit", to: "users#update"
+
 end
