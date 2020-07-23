@@ -40,6 +40,13 @@ RSpec.describe 'As a registered user' do
       visit "/profile"
       click_on 'Change Password'
       expect(current_path).to eq("/passwords/edit")
+
+      fill_in :password, with: 'newpass'
+      fill_in :password_confirmation, with: 'newpass'
+      click_on 'Update Password'
+
+      expect(current_path).to eq("/profile")
+      expect(page).to have_content('Your password has been udpated.')
     end
   end
 end
