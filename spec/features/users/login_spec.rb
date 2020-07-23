@@ -47,7 +47,7 @@ RSpec.describe 'As a visitor' do
       expect(page).to have_content("Welcome, #{@existing_user.name}! You are now logged in.")
     end
 
-    xit 'If I am a merchant user, I am redirected to the merchant dashboard and I see a flash message that I am now logged in' do
+    it 'If I am a merchant user, I am redirected to the merchant dashboard and I see a flash message that I am now logged in' do
 
       visit '/login'
       fill_in :email, with: @existing_merchant.email

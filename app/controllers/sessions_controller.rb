@@ -14,10 +14,16 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: params[:email])
-    if user.authenticate(params[:password]) && user
+    if user.authenticate(params[:password])
       session[:user_id] = user.id
-      flash[:success] = "Welcome, #{user.name}! You are now logged in."
-      redirect_to '/profile'
+
+      if current_merchant?
+        flash[:success] = "Welcome, #{user.name}! You are now logged in."
+        redirect_to '/merchant'
+      elsif current_user
+        flash[:success] = "Welcome, #{user.name}! You are now logged in."
+        redirect_to '/profile'
+      end
     else
       flash[:error] = "Sorry, your credentials are bad."
       render :new
