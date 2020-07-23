@@ -2,13 +2,13 @@ class SessionsController < ApplicationController
   def new
     if current_merchant?
       redirect_to '/merchant'
-      flash[:success] = "Logged In"
+      flash[:success] = "You are already logged in!"
     elsif current_admin?
       redirect_to '/admin'
-      flash[:success] = "Logged In"
+      flash[:success] = "You are already logged in!"
     elsif current_user
       redirect_to '/profile'
-      flash[:success] = "Logged In"
+      flash[:success] = "You are already logged in!"
     end
   end
 

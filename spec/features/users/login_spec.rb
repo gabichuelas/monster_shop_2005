@@ -100,49 +100,49 @@ RSpec.describe 'As a visitor' do
       expect(current_path).to eq('/login')
       expect(page).to have_content("Sorry, your credentials are bad.")
     end
-  end
 
-  describe 'If a logged-in user, merchant, or admin visits the login path' do
-    xit 'If I am a regular user, I am redirected to my profile page and I see a flash message that tells me I am already logged in' do
-      visit '/login'
+    describe 'If a logged-in user, merchant, or admin visits the login path' do
+      it 'If I am a regular user, I am redirected to my profile page and I see a flash message that tells me I am already logged in' do
+        visit '/login'
 
-      fill_in :email, with: @existing_user.email
-      fill_in :password, with: @existing_user.password
+        fill_in :email, with: @existing_user.email
+        fill_in :password, with: @existing_user.password
 
-      click_button "Log In"
+        click_button "Log In"
 
-      visit '/login'
+        visit '/login'
 
-      expect(current_path).to eq('/profile')
-      expect(page).to have_content("#{@existing_user.name}, you are already logged in!") #<---- will need to add this flash message
-    end
+        expect(current_path).to eq('/profile')
+        expect(page).to have_content("You are already logged in!")
+      end
 
-    xit 'If I am a merchant user, I am redirected to the merchant dashboard and I see a flash message telling me I am already logged in' do
-      visit '/login'
+      it 'If I am a merchant user, I am redirected to the merchant dashboard and I see a flash message telling me I am already logged in' do
+        visit '/login'
 
-      fill_in :email, with: @existing_merchant.email
-      fill_in :password, with: @existing_merchant.password
+        fill_in :email, with: @existing_merchant.email
+        fill_in :password, with: @existing_merchant.password
 
-      click_button "Log In"
+        click_button "Log In"
 
-      visit '/login'
+        visit '/login'
 
-      expect(current_path).to eq('/merchant') #<---- Not sure if this is the correct path
-      expect(page).to have_content("#{@existing_merchant.name}, you are already logged in!")
-    end
+        expect(current_path).to eq('/merchant')
+        expect(page).to have_content("You are already logged in!")
+      end
 
-    xit 'If I am an admin user, I am redirected to the admin dashboard and I see a flash message telling me I am already logged in' do
-      visit '/login'
+      it 'If I am an admin user, I am redirected to the admin dashboard and I see a flash message telling me I am already logged in' do
+        visit '/login'
 
-      fill_in :email, with: @existing_admin.email
-      fill_in :password, with: @existing_admin.password
+        fill_in :email, with: @existing_admin.email
+        fill_in :password, with: @existing_admin.password
 
-      click_button "Log In"
+        click_button "Log In"
 
-      visit '/login'
+        visit '/login'
 
-      expect(current_path).to eq('/admin') #<---- Not sure if this is the correct path
-      expect(page).to have_content("#{@existing_admin.name}, you are already logged in!")
+        expect(current_path).to eq('/admin')
+        expect(page).to have_content("You are already logged in!")
+      end
     end
   end
 end
