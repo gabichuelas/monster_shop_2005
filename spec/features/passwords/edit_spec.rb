@@ -36,11 +36,9 @@ RSpec.describe 'As a registered user' do
       fill_in :password, with: 'newpass'
       fill_in :password_confirmation, with: 'wrongpass'
       click_on 'Update Password'
-      # this is where test fails.
-      # need to figure out how to make it a requirement
-      # that the passwords match.
+
       expect(current_path).to eq("/passwords/edit")
-      expect(page).to have_content('Your password has been updated.')
+      expect(page).to have_content('Password confirmation doesn\'t match Password')
     end
   end
 end
