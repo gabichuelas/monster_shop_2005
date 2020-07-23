@@ -46,7 +46,23 @@ RSpec.describe 'As a registered user' do
       click_on 'Update Password'
 
       expect(current_path).to eq("/profile")
-      expect(page).to have_content('Your password has been udpated.')
+      expect(page).to have_content('Your password has been updated.')
+    end
+
+    it 'When I fill in a different password in both fields; And I submit the form; Then I am returned to the change password page; And I see a flash message telling me that my passwords dont match' do
+
+      visit "/profile"
+      click_on 'Change Password'
+      expect(current_path).to eq("/passwords/edit")
+
+      fill_in :password, with: 'newpass'
+      fill_in :password_confirmation, with: 'wrongpass'
+      click_on 'Update Password'
+      # this is where test fails.
+      # need to figure out how to make it a requirement
+      # that the passwords match.
+      expect(current_path).to eq("/passwords/edit")
+      expect(page).to have_content('Your password has been updated.')
     end
   end
 end
