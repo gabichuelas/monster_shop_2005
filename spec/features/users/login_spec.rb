@@ -79,10 +79,8 @@ RSpec.describe 'As a visitor' do
       expect(page).to have_content('Logout')
       expect(page).to have_content("Welcome, #{@existing_admin.name}! You are now logged in.")
     end
-  end
 
-  describe 'When I submit invalid information' do
-    xit 'I am redirected to the login page and see a flash message that my credentials were incorrect,
+    it 'When I submit invalid information, I am redirected to the login page and see a flash message that my credentials were incorrect,
         I am NOT told whether it was my email or password that was incorrect' do
       visit '/login'
 
