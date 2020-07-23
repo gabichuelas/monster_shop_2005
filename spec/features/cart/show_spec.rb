@@ -77,9 +77,30 @@ RSpec.describe 'Cart show' do
             expect(page).to have_content(@pencil.inventory)
           end
         end
+
+        it "I see a button or link to decrement the count of items I want to purchase, if count gets to 0 item is removed" do
+          visit '/cart'
+
+          within "#cart-item-#{@pencil.id}" do
+            expect(page).to have_content("1")
+            click_link '+'
+          end
+
+          within "#cart-item-#{@pencil.id}" do
+            expect(page).to have_content("2")
+            click_link '-'
+          end
+
+          within "#cart-item-#{@pencil.id}" do
+            expect(page).to have_content("1")
+            click_link '-'
+          end
+          expect(page).not_to have_css("#cart-item-#{@pencil.id}")
+        end
       end
     end
   end
+  
   describe "When I haven't added anything to my cart" do
     describe "and visit my cart show page" do
       it "I see a message saying my cart is empty" do
@@ -92,7 +113,6 @@ RSpec.describe 'Cart show' do
         visit '/cart'
         expect(page).to_not have_link("Empty Cart")
       end
-
     end
   end
 end
