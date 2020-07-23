@@ -1,6 +1,7 @@
 <h1>Register a New User</h1>
 
-<%= form_tag '/users', method: :post do %>
+<%= form_tag '/register', method: :post do %>
+  <%= label_tag :name%>
   <%= text_field_tag :name, (if @new_user != nil then @new_user.name else nil end)%>
 
   <%= label_tag :address%>

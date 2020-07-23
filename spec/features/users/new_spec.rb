@@ -42,11 +42,32 @@ RSpec.describe 'As a visitor' do
           click_on 'Register Now'
           new_user = User.last
 
-          allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@new_user)
+          allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(new_user)
 
           expect(current_path).to eq("/profile")
 
           expect(page).to have_content("You are now registered and logged in")
+        end
+
+        it 'and if I enter mismatched passwords, I am returned to registration page and see a flash message indicating password fields did not match' do
+
+          visit "/"
+          click_on 'Register'
+          expect(current_path).to eq("/register")
+
+          fill_in :name, with: @name
+          fill_in :address, with: @address
+          fill_in :city, with: @city
+          fill_in :state, with: @state
+          fill_in :zip, with: @zip
+          fill_in :email, with: @email
+          fill_in :password, with: @password
+          fill_in :password_confirmation, with: 'notfriends'
+
+          click_on 'Register Now'
+
+          expect(current_path).to eq("/register")
+          expect(page).to have_content("Password confirmation doesn\'t match Password")
         end
 
         it 'And I do not fill in this form completely; I am returned to the registration page; And I see a flash message indicating that I am missing required fields' do
@@ -63,7 +84,7 @@ RSpec.describe 'As a visitor' do
           fill_in :password_confirmation, with: @password
 
           click_on 'Register Now'
-          expect(current_path).to eq("/users")
+          expect(current_path).to eq("/register")
           expect(page).to have_content("State can't be blank")
         end
 
@@ -81,7 +102,7 @@ RSpec.describe 'As a visitor' do
           fill_in :password_confirmation, with: @password
 
           click_on 'Register Now'
-          expect(current_path).to eq("/users")
+          expect(current_path).to eq("/register")
           expect(page).to have_content("Email has already been taken")
         end
       end
