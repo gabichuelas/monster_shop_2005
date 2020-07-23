@@ -16,16 +16,14 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
+      flash[:success] = "Welcome, #{user.name}! You are now logged in."
       if current_admin?
-        flash[:success] = "Welcome, #{user.name}! You are now logged in."
         redirect_to '/admin'
       elsif current_merchant?
-        flash[:success] = "Welcome, #{user.name}! You are now logged in."
         redirect_to '/merchant'
       elsif current_user
-        flash[:success] = "Welcome, #{user.name}! You are now logged in."
         redirect_to '/profile'
-      end
+      end 
     else
       flash[:error] = "Sorry, your credentials are bad."
       render :new

@@ -8,6 +8,20 @@ class UsersController <ApplicationController
     render file: "/public/404" unless current_user
   end
 
+  def edit
+    render file: "/public/404" unless current_user
+  end
+
+  def update
+    current_user.update(user_params)
+    if current_user.valid?
+      redirect_to "/profile"
+    else
+      flash[:errors] = current_user.errors.full_messages
+      redirect_to "/users/edit"
+    end
+  end
+
   def create
     @new_user = User.new(user_params)
     if @new_user.save
