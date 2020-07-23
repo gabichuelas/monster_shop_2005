@@ -16,6 +16,9 @@ class UsersController <ApplicationController
     current_user.update(user_params)
     if current_user.valid?
       redirect_to "/profile"
+    elsif current_user.errors.full_messages == ["Email has already been taken"]
+      flash[:error] = "Email has already been taken"
+      redirect_to '/users/edit'
     else
       flash[:errors] = current_user.errors.full_messages
       redirect_to "/users/edit"
