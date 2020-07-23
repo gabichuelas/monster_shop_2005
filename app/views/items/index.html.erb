@@ -7,6 +7,7 @@
 <section class="grid-container">
   <% @items.each do |item| %>
     <section class = "grid-item" id= 'item-<%=item.id%>'>
+    <% if item.active? %>
       <h2> <%=link_to item.name, "/items/#{item.id}" %> </h2>
       <p>Sold by: <%=link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></p>
       <img src= <%= item.image %>>
@@ -20,6 +21,7 @@
       <% else %>
         <p>Inactive</p>
       <% end %>
-    </section>
     <% end %>
+    </section>
+  <% end %>
 </section>

@@ -3,6 +3,16 @@ require 'rails_helper'
 RSpec.describe "Items Index Page" do
   describe "When I visit the items index page" do
     before(:each) do
+      @existing_user = User.create!(name: "Bob Vance",
+                                    address: "123 ABC St.",
+                                    city: "Denver",
+                                    state: "Colorado",
+                                    zip: "80202",
+                                    email: "example@hotmail.com",
+                                    password: "qwer",
+                                    role: 0)
+
+
       @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
       @brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
 
@@ -19,8 +29,6 @@ RSpec.describe "Items Index Page" do
       expect(page).to have_link(@tire.merchant.name)
       expect(page).to have_link(@pull_toy.name)
       expect(page).to have_link(@pull_toy.merchant.name)
-      expect(page).to have_link(@dog_bone.name)
-      expect(page).to have_link(@dog_bone.merchant.name)
     end
 
     it "I can see a list of all of the items "do
@@ -47,15 +55,24 @@ RSpec.describe "Items Index Page" do
         expect(page).to have_css("img[src*='#{@pull_toy.image}']")
       end
 
-      within "#item-#{@dog_bone.id}" do
-        expect(page).to have_link(@dog_bone.name)
-        expect(page).to have_content(@dog_bone.description)
-        expect(page).to have_content("Price: $#{@dog_bone.price}")
-        expect(page).to have_content("Inactive")
-        expect(page).to have_content("Inventory: #{@dog_bone.inventory}")
-        expect(page).to have_link(@brian.name)
-        expect(page).to have_css("img[src*='#{@dog_bone.image}']")
-      end
+    end
+
+    it "as any kind of user, when I visit the items index page, I see all items, except the disabled items." do
+
+      visit "/login"
+      fill_in :email, with: @existing_user.email
+      fill_in :password, with: @existing_user.password
+      click_on "Log In"
+
+      visit "/items"
+
+      expect(page).to have_link(@tire.name)
+      expect(page).to have_link(@tire.merchant.name)
+      expect(page).to have_link(@pull_toy.name)
+      expect(page).to have_link(@pull_toy.merchant.name)
+
+      expect(page).to_not have_link(@dog_bone.name)
+
     end
   end
 end
