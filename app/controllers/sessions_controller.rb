@@ -16,8 +16,10 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user.authenticate(params[:password])
       session[:user_id] = user.id
-
-      if current_merchant?
+      if current_admin?
+        flash[:success] = "Welcome, #{user.name}! You are now logged in."
+        redirect_to '/admin'
+      elsif current_merchant?
         flash[:success] = "Welcome, #{user.name}! You are now logged in."
         redirect_to '/merchant'
       elsif current_user
