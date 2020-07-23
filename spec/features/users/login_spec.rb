@@ -47,7 +47,7 @@ RSpec.describe 'As a visitor' do
       expect(page).to have_content("Welcome, #{@existing_user.name}! You are now logged in.")
     end
 
-    it 'If I am a merchant user, I am redirected to the merchant dashboard and I see a flash message that I am now logged in' do
+    xit 'If I am a merchant user, I am redirected to the merchant dashboard and I see a flash message that I am now logged in' do
 
       visit '/login'
       fill_in :email, with: @existing_merchant.email
@@ -63,7 +63,7 @@ RSpec.describe 'As a visitor' do
       expect(page).to have_content("Welcome, #{@existing_merchant.name}! You are now logged in.")
     end
 
-    it 'If I am an admin user, I am redirected to the admin dashboard and I see a flash message that I am now logged in' do
+    xit 'If I am an admin user, I am redirected to the admin dashboard and I see a flash message that I am now logged in' do
 
       visit '/login'
       fill_in :email, with: @existing_admin.email
@@ -82,7 +82,7 @@ RSpec.describe 'As a visitor' do
   end
 
   describe 'When I submit invalid information' do
-    it 'I am redirected to the login page and see a flash message that my credentials were incorrect,
+    xit 'I am redirected to the login page and see a flash message that my credentials were incorrect,
         I am NOT told whether it was my email or password that was incorrect' do
       visit '/login'
 
@@ -105,7 +105,7 @@ RSpec.describe 'As a visitor' do
   end
 
   describe 'If a logged-in user, merchant, or admin visits the login path' do
-    it 'If I am a regular user, I am redirected to my profile page and I see a flash message that tells me I am already logged in' do
+    xit 'If I am a regular user, I am redirected to my profile page and I see a flash message that tells me I am already logged in' do
       visit '/login'
 
       fill_in :email, with: @existing_user.email
@@ -119,7 +119,7 @@ RSpec.describe 'As a visitor' do
       expect(page).to have_content("#{@existing_user.name}, you are already logged in!") #<---- will need to add this flash message
     end
 
-    it 'If I am a merchant user, I am redirected to the merchant dashboard and I see a flash message telling me I am already logged in' do
+    xit 'If I am a merchant user, I am redirected to the merchant dashboard and I see a flash message telling me I am already logged in' do
       visit '/login'
 
       fill_in :email, with: @existing_merchant.email
@@ -133,7 +133,7 @@ RSpec.describe 'As a visitor' do
       expect(page).to have_content("#{@existing_merchant.name}, you are already logged in!")
     end
 
-    it 'If I am an admin user, I am redirected to the admin dashboard and I see a flash message telling me I am already logged in' do
+    xit 'If I am an admin user, I am redirected to the admin dashboard and I see a flash message telling me I am already logged in' do
       visit '/login'
 
       fill_in :email, with: @existing_admin.email

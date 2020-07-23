@@ -18,4 +18,12 @@ class ApplicationController < ActionController::Base
   def current_merchant?
     current_user && current_user.merchant?
   end
+
+  def require_admin
+    render file: "/public/404" unless current_admin?
+  end
+
+  def require_merchant
+    render file: "/public/404" unless current_merchant?
+  end
 end
