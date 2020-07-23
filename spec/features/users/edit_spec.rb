@@ -33,4 +33,13 @@ RSpec.describe 'As a registered user' do
       expect(page).to have_content('Boulder, CO')
     end
   end
+
+  describe 'When I visit my profile page and I click on the link to change my password; I see a form with fields for a new password, and a new password confirmation' do
+    it 'When I fill in the same password in both fields; And I submit the form; Then I am returned to my profile page; And I see a flash message telling me that my password is updated' do
+
+      visit "/profile"
+      click_on 'Change Password'
+      expect(current_path).to eq("/passwords/edit")
+    end
+  end
 end

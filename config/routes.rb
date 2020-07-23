@@ -59,4 +59,8 @@ Rails.application.routes.draw do
   get "/users/edit", to: "users#edit"
   patch "/users/edit", to: "users#update"
 
+  # EDIT PASSWORD
+  get "passwords/edit", to: "passwords#edit"
+  patch "passwords/edit", to: "passwords#update"
+
 end
