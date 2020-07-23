@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   namespace :merchant do
     get "/", to: "dashboard#index"
   end
-  
+
   get "/", to: "welcome#index"
 
   get "/merchants", to: "merchants#index"
@@ -54,6 +54,7 @@ Rails.application.routes.draw do
 
   # LOGIN / LOGOUT SESSIONS
   get "/login", to: "sessions#new"
+  post '/login', to: 'sessions#create'
   delete "/logout", to: "sessions#destroy"
 
 
