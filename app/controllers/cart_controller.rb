@@ -21,5 +21,9 @@ class CartController < ApplicationController
     redirect_to '/cart'
   end
 
-
+  def increment_decrement
+    params[:increment_decrement] == "increment"
+    cart.add_quantity(params[:item_id]) unless cart.out_of_inventory?(params[:item_id])
+    redirect_to "/cart"
+  end
 end

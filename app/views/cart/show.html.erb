@@ -30,6 +30,7 @@
       </td>
       <td>
         <center>
+          <%= link_to '+', "/cart?increment_decrement=increment&item_id=#{item.id}", method: :patch if "/cart" %>
           <p><%=quantity%></p>
           <p><%= link_to "Remove", "/cart/#{item.id}",method: :delete %></p>
         </center>

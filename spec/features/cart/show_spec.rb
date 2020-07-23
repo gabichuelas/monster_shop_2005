@@ -55,6 +55,29 @@ RSpec.describe 'Cart show' do
 
         expect(page).to have_content("Total: $124")
       end
+
+      describe "Next to each item in my cart" do
+        it "I see a button or link to increment the count of items I want to purchase, but not beyond that item's inventory size" do
+          visit '/cart'
+
+          within "#cart-item-#{@pencil.id}" do
+            expect(page).to have_content("1")
+            click_link '+'
+          end
+
+          within "#cart-item-#{@pencil.id}" do
+            expect(page).to have_content("2")
+          end
+
+          within "#cart-item-#{@pencil.id}" do
+            expect(page).to have_content("2")
+            (@pencil.inventory - 1).times { click_link '+' }
+            expect(page).to have_content(@pencil.inventory)
+            click_link '+'
+            expect(page).to have_content(@pencil.inventory)
+          end
+        end
+      end
     end
   end
   describe "When I haven't added anything to my cart" do

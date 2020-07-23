@@ -32,4 +32,12 @@ class Cart
     end
   end
 
+  def add_quantity(item_id)
+   @contents[item_id] += 1
+  end
+
+  def out_of_inventory?(item_id)
+    @contents[item_id.to_s] == Item.find(item_id).inventory
+  end
+
 end
