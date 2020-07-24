@@ -22,8 +22,12 @@ class CartController < ApplicationController
   end
 
   def increment_decrement
-    params[:increment_decrement] == "increment"
-    cart.add_quantity(params[:item_id]) unless cart.out_of_inventory?(params[:item_id])
+    if params[:increment_decrement] == "increment"
+      cart.add_quantity(params[:item_id]) unless cart.out_of_inventory?(params[:item_id])
+    elsif params[:increment_decrement] == "decrement"
+      cart.subtract_quantity(params[:item_id])
+      return remove_item if cart.quantity_equals_zero?(params[:item_id])
+    end
     redirect_to "/cart"
   end
 end

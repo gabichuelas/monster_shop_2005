@@ -32,6 +32,7 @@
         <center>
           <%= link_to '+', "/cart?increment_decrement=increment&item_id=#{item.id}", method: :patch if "/cart" %>
           <p><%=quantity%></p>
+          <%= link_to '-', "/cart?increment_decrement=decrement&item_id=#{item.id}", method: :patch if "/cart" %>
           <p><%= link_to "Remove", "/cart/#{item.id}",method: :delete %></p>
         </center>
         </td>
