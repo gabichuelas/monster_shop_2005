@@ -30,8 +30,8 @@ dog_treat = dog_shop.items.create(name: "Alaska's Organic Dog Treats", descripti
 
 #surf_shop items
 
-surfboard = surf_shop.items.create(name: "Surfboard", description: "Hang ten all day with this awesome board!", price: 600, image: "https://cdn.shopify.com/s/files/1/0411/9757/products/Degree-33-Ultimate-Blue-Dip-Epoxy-Longboard-Deck_a8e36d7a-7804-4c24-aec2-a3f9ab0a6bf8_600x.jpg?v=1581623035", active?:true, inventory: 21)
+surfboard = surf_shop.items.create(name: "Surfboard", description: "Hang ten all day with this awesome board!", price: 600, image: "https://cdn.shopify.com/s/files/1/0411/9757/products/Degree-33-Ultimate-Blue-Dip-Epoxy-Longboard-Deck_a8e36d7a-7804-4c24-aec2-a3f9ab0a6bf8_600x.jpg?v=1581623035", inventory: 21)
 
-surf_suit = surf_shop.items.create(name: "UV Surf Suit", description: "Protect yourself from the rays and look good while surfing.", price: 40, image: "https://cdn.shopify.com/s/files/1/0029/3067/1665/products/liva-uv-surf-suit-14032653615187_2000x.jpg?v=1581401521", active?:true, inventory: 21)
+surf_suit = surf_shop.items.create(name: "UV Surf Suit", description: "Protect yourself from the rays and look good while surfing.", price: 40, image: "https://cdn.shopify.com/s/files/1/0029/3067/1665/products/liva-uv-surf-suit-14032653615187_2000x.jpg?v=1581401521", inventory: 21)
 
-board_wax = surf_shop.items.create(name: "Mr Zogs Sex Wax", description: "Help your feet grip the board with this classic board wax.", price: 40, image: "https://nextadventure.net/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/s/e/sex_wax_tropical_water_surf.jpg", active?:true, inventory: 21)
+board_wax = surf_shop.items.create(name: "Mr Zogs Sex Wax", description: "Help your feet grip the board with this classic board wax.", price: 40, image: "https://nextadventure.net/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/s/e/sex_wax_tropical_water_surf.jpg", inventory: 21)
