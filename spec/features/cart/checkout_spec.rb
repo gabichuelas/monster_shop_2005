@@ -27,6 +27,32 @@ RSpec.describe 'Cart show' do
 
       expect(current_path).to eq("/orders/new")
     end
+
+    describe 'When I have items in my cart and I visit my cart' do
+      it 'I see text informing me that I must register or log in to finish checking out' do
+
+        visit '/cart'
+
+        expect(page).to have_content('You must register or log in to checkout!')
+      end
+
+      it 'The word "register" is a link to the registration page' do
+
+        visit '/cart'
+
+        within '#nav-options' do
+          expect(page).to have_link('register', href: '/register')
+        end
+      end
+
+      it 'The words "log in" are a link to the login page' do
+        visit '/cart'
+
+        within '#nav-options' do
+          expect(page).to have_link('log in', href: '/login')
+        end
+      end
+    end
   end
 
   describe 'When I havent added items to my cart' do
