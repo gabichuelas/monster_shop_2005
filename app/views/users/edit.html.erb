@@ -6,5 +6,7 @@
   <%= text_field_tag :state, current_user.state, placeholder: 'State' %><br>
   <%= text_field_tag :zip, current_user.zip, placeholder: 'Zip' %><br>
   <%= text_field_tag :email, current_user.email, placeholder: 'Email' %><br>
+  <%= hidden_field_tag :password, current_user.password_digest %><br>
+  <%= hidden_field_tag :password_confirmation, current_user.password_digest %><br>
   <%= submit_tag 'Save Profile' %>
 <% end %>
