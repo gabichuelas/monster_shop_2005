@@ -26,6 +26,10 @@ class OrdersController <ApplicationController
     end
   end
 
+  def index
+
+  end 
+
 
   private
 
