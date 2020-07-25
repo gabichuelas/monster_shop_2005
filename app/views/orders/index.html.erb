@@ -1,0 +1,10 @@
+<h1>Your Orders</h1>
+
+<% current_user.orders.each do |order| %>
+  <tr id="order-<%= order.id %>">
+    <td>Order ID: <%= order.id %></td> <br>
+    <td>Order Created At: <%= order.created_at %></td> <br>
+    <td>Status: <%= order.status %></td> <br>
+    <td>Items in Order: <%= order.total_quantity %></td>
+  </tr>
+<% end %>
