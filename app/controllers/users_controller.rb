@@ -13,8 +13,8 @@ class UsersController <ApplicationController
   end
 
   def update
-    current_user.update(user_params)
-    if current_user.valid?
+    current_user.update(user_edit_params)
+    if current_user.save
       redirect_to "/profile"
     else
       flash[:errors] = current_user.errors.full_messages
@@ -38,5 +38,9 @@ class UsersController <ApplicationController
 
   def user_params
     params.permit(:name, :address, :city, :state, :zip, :email, :password, :password_confirmation)
+  end
+
+  def user_edit_params
+    params.permit(:name, :address, :city, :state, :zip, :email)
   end
 end
