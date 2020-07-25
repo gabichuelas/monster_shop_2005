@@ -28,6 +28,7 @@ RSpec.describe 'As a registered user' do
       expect(page).to have_content("Order Updated At: #{@order_1.updated_at}")
       expect(page).to have_content(@order_1.status)
       expect(page).to have_content("Items in Order: #{@order_1.total_quantity}")
+      expect(page).to have_content("Grand Total: #{@order_1.grandtotal}")
     end
   end
 end
