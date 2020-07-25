@@ -529,7 +529,7 @@ When I click this link my URI path is "/profile/orders"
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 28, User Profile displays Orders
 
