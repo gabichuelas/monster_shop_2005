@@ -55,6 +55,87 @@ RSpec.describe 'Cart show' do
     end
   end
 
+  describe "As a registered user" do
+    before(:each) do
+      @user = User.create!(name: "Bob Vance",
+                                    address: "123 ABC St.",
+                                    city: "Denver",
+                                    state: "CO",
+                                    zip: "80202",
+                                    email: "example@hotmail.com",
+                                    password: "qwer",
+                                    role: 0)
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+    end
+
+    describe 'When I add items to my cart and I visit my cart' do
+      before(:each) do
+        @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
+        @paper = @meg.items.create(name: "Lined Paper", description: "Great for writing on!", price: 20, image: "https://cdn.vertex42.com/WordTemplates/images/printable-lined-paper-wide-ruled.png", inventory: 3)
+        @tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+        visit "/items/#{@paper.id}"
+        click_on 'Add To Cart'
+        visit "/items/#{@tire.id}"
+        click_on 'Add To Cart'
+        visit '/cart'
+      end
+
+      it 'I see a button or link indicating that I can check out' do
+
+        within "#nav-options" do
+          expect(page).to have_link('Checkout')
+        end
+      end
+
+      describe 'When I click the button or link to check out' do
+        it 'I am taken to a new order creation form' do
+          click_on('Checkout')
+
+          expect(current_path).to eq('/orders/new')
+        end
+
+        describe 'When I click the button or link to create the order' do
+          it 'an order is created with a status of pending' do
+            click_on('Checkout')
+
+            fill_in :name, with: @user.name
+            fill_in :address, with: @user.address
+            fill_in :city, with: @user.city
+            fill_in :state, with: @user.state
+            fill_in :zip, with: @user.zip
+            click_on('Create Order')
+
+            new_order = Order.last
+
+            expect(current_path).to eq("/profile/orders")
+
+            within "#order-#{new_order.id}" do
+              expect(page).to have_content('Status: pending')
+            end
+          end
+
+          it 'I see a flash message that my order was created, my cart is now empty, and my new order is listed on my profile orders page' do
+            click_on('Checkout')
+
+            fill_in :name, with: @user.name
+            fill_in :address, with: @user.address
+            fill_in :city, with: @user.city
+            fill_in :state, with: @user.state
+            fill_in :zip, with: @user.zip
+            click_on('Create Order')
+
+            new_order = Order.last
+
+            expect(page).to have_content("Your order has been created.")
+            expect(page).to have_content("#{new_order.id}")
+            expect(page).to_not have_link("Checkout")
+          end
+        end
+      end
+    end
+  end
+
   describe 'When I havent added items to my cart' do
     it 'There is not a link to checkout' do
       visit "/cart"
