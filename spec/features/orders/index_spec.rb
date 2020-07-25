@@ -24,8 +24,8 @@ RSpec.describe 'As a registered user' do
       visit "/profile/orders"
 
       expect(page).to have_content("Order ID: #{@order_1.id}")
-      expect(page).to have_content(@order_1.created_at)
-      expect(page).to have_content(@order_1.updated_at)
+      expect(page).to have_content("Order Created At: #{@order_1.created_at}")
+      expect(page).to have_content("Order Updated At: #{@order_1.updated_at}")
       expect(page).to have_content(@order_1.status)
       expect(page).to have_content("Items in Order: #{@order_1.total_quantity}")
     end
