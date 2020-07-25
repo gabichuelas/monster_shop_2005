@@ -468,7 +468,7 @@ If I decrement the count to 0 the item is immediately removed from my cart
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 25, Visitors must register or log in to check out
 
