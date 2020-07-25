@@ -1,5 +1,9 @@
 class OrdersController <ApplicationController
 
+  def index
+    @orders = current_user.orders
+  end
+
   def new
 
   end
@@ -18,8 +22,9 @@ class OrdersController <ApplicationController
           price: item.price
           })
       end
+      flash[:notice] = "Your order has been created."
       session.delete(:cart)
-      redirect_to "/orders/#{order.id}"
+      redirect_to "/profile/orders"
     else
       flash[:notice] = "Please complete address form to create an order."
       render :new
@@ -28,7 +33,7 @@ class OrdersController <ApplicationController
 
   def index
 
-  end 
+  end
 
 
   private
