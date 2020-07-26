@@ -16,7 +16,9 @@ RSpec.describe 'As a registered user' do
       bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
       @chain = bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
       @order_1 = user.orders.create!(name: 'Meg', address: '123 Stang St', city: 'Hershey', state: 'PA', zip: 80218)
-      @item_order = @order_1.item_orders.create!(item: @chain, price: @chain.price, quantity: 2)
+
+      @item_order = @order_1.item_orders.create!(item: @chain, price: @chain.price, quantity: 2, status: 0)
+
     end
 
     it 'My URL route is now something like "/profile/orders/15";' do
@@ -47,5 +49,32 @@ RSpec.describe 'As a registered user' do
       expect(page).to have_content(@order_1.total_quantity)
       expect(page).to have_content(@order_1.grandtotal)
     end
+
+
+    it 'I see a button or link to cancel the order' do
+
+      visit "/profile/orders/#{@order_1.id}"
+      expect(page).to have_link('Cancel Order')
+    end
+
+    it 'When I click the cancel button for an order, the following happens:
+    - Each row in the "order items" table is given a status of "unfulfilled"
+    - The order itself is given a status of "cancelled"
+    - Any item quantities in the order that were previously fulfilled have their quantities returned to their respective merchant\'s inventory for that item.
+    - I am returned to my profile page
+    - I see a flash message telling me the order is now cancelled
+    - And I see that this order now has an updated status of "cancelled"' do
+
+      visit "/profile/orders/#{@order_1.id}"
+      click_on 'Cancel Order'
+
+      expect(current_path).to eq("/profile/orders")
+      expect(page).to have_content('Your order is now cancelled')
+      expect(@order_1.status).to eq('cancelled')
+      expect(@order_1.item_orders[0].status).to eq('unfulfilled')
+      expect(@item_order.quantity + @chain.inventory).to eq(7)
+
+    end
+
   end
 end

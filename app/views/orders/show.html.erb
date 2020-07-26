@@ -51,4 +51,5 @@
 </section>
 <section id="datecreated">
   <p> <%= @order.created_at%></p>
+  <%= link_to 'Cancel Order', "/orders/#{@order.id}", method: :delete %>
 </section>

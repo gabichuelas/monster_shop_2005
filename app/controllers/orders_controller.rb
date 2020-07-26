@@ -31,6 +31,16 @@ class OrdersController <ApplicationController
     end
   end
 
+  def destroy
+    order = Order.find(params[:id])
+    order.update(status: 3)
+    # write model test for the following:
+    order.cancel_items
+    order.restock
+    flash[:success] = 'Your order is now cancelled'
+    redirect_to "/profile/orders"
+  end
+
   def index
 
   end
