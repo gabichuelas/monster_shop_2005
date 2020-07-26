@@ -81,7 +81,51 @@ RSpec.describe "Admin dashboard" do
       expect(page).to have_link("#{@order_3.user.name}")
       click_on "#{@order_3.user.name}"
     end
-
     expect(current_path).to eq("/admin/users/#{@user3.id}")
+  end
+
+  it 'I see all packaged orders, and next to each order a button to "ship" the order' do
+    visit '/admin'
+
+    within '.packaged' do
+      expect(page).to have_content("#{@order_3.id}")
+      expect(page).to have_button('Ship', count: 1)
+    end
+  end
+
+  describe 'When I click the ship button' do
+    it 'the status of that order changes to "shipped"' do
+
+      visit '/admin'
+
+      within '.packaged' do
+        click_on 'Ship'
+      end
+
+      expect(current_path).to eq('/admin')
+
+      within '.packaged' do
+        expect(page).not_to have_content("#{@order_3.id}")
+      end
+
+      expect(current_path).to eq('/admin')
+
+      within '.shipped' do
+        expect(page).to have_content("#{@order_3.id}")
+      end
+    end
+
+    it 'after an order is shipped, the order can no longer be cancelled' do
+      visit '/admin'
+
+      within '.packaged' do
+        click_on 'Ship'
+      end
+
+      visit "profile/orders/#{@order_3.id}"
+
+      expect(page).to have_content("Status: shipped")
+      expect(page).to_not have_link('Cancel Order')
+    end
   end
 end
