@@ -33,10 +33,10 @@ class OrdersController <ApplicationController
 
   def destroy
     order = Order.find(params[:id])
-    order.status = 'cancelled'
-    # need to write new methods for the following
-    # order.cancel_items
-    # order.restock
+    order.update(status: 3)
+    # write model test for the following:
+    order.cancel_items
+    order.restock
     flash[:success] = 'Your order is now cancelled'
     redirect_to "/profile/orders"
   end
