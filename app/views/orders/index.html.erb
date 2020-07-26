@@ -2,7 +2,7 @@
 
 <% current_user.orders.each do |order| %>
   <tr id="order-<%= order.id %>">
-    <td>Order ID: <%= order.id %></td> <br>
+    <td><%= link_to "Order ID: #{order.id}", "/profile/orders/#{order.id}" %></td><br>
     <td>Order Created At: <%= order.created_at %></td> <br>
     <td>Order Updated At: <%= order.updated_at %></td> <br>
     <td>Status: <%= order.status %></td> <br>
