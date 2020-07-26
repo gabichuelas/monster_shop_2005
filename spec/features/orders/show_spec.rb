@@ -16,7 +16,9 @@ RSpec.describe 'As a registered user' do
       bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
       @chain = bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
       @order_1 = user.orders.create!(name: 'Meg', address: '123 Stang St', city: 'Hershey', state: 'PA', zip: 80218)
+
       @item_order = @order_1.item_orders.create!(item: @chain, price: @chain.price, quantity: 2, status: 0)
+
     end
 
     it 'My URL route is now something like "/profile/orders/15";' do
@@ -48,6 +50,7 @@ RSpec.describe 'As a registered user' do
       expect(page).to have_content(@order_1.grandtotal)
     end
 
+
     it 'I see a button or link to cancel the order' do
 
       visit "/profile/orders/#{@order_1.id}"
@@ -72,5 +75,6 @@ RSpec.describe 'As a registered user' do
       expect(@item_order.quantity + @chain.inventory).to eq(7)
 
     end
+
   end
 end
