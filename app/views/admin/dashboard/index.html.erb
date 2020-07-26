@@ -6,6 +6,7 @@
     <span>Order ID: <%= order.id %></span>
     <span>Placed By: <%= link_to "#{order.user.name}", "/admin/users/#{order.user.id}" %></span>
     <span>Date Created: <%= order.created_at %></span>
+    <span><%= button_to 'Ship', "admin/orders/#{order.id}?status=2", method: :patch %></span>
   <% end %>
 </section>
 
