@@ -3,5 +3,6 @@ class Admin::DashboardController < ApplicationController
 
   def index
     # this is populated by default html in applications.html.erb
+    @orders = Order.all
   end
 end

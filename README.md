@@ -590,7 +590,7 @@ The order status changes from "pending" to "packaged"
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 32, Admin can see all orders
 
