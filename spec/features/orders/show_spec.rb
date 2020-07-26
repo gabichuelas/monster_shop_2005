@@ -47,5 +47,32 @@ RSpec.describe 'As a registered user' do
       expect(page).to have_content(@order_1.total_quantity)
       expect(page).to have_content(@order_1.grandtotal)
     end
+
+    it 'I see a button or link to cancel the order' do
+
+      visit "/profile/orders/#{@order_1.id}"
+      expect(page).to have_link('Cancel Order')
+    end
+
+    it 'When I click the cancel button for an order, the following happens:
+    - Each row in the "order items" table is given a status of "unfulfilled"
+    - The order itself is given a status of "cancelled"
+    - Any item quantities in the order that were previously fulfilled have their quantities returned to their respective merchant\'s inventory for that item.
+    - I am returned to my profile page
+    - I see a flash message telling me the order is now cancelled
+    - And I see that this order now has an updated status of "cancelled"' do
+
+      visit "/profile/orders/#{@order_1.id}"
+      expect(@chain.inventory).to eq(3)
+
+      click_on 'Cancel Order'
+
+      expect(current_path).to eq("/profile/orders")
+      expect(page).to have_content('Your order is now cancelled')
+      expect(@chain.inventory).to eq(5)
+      expect(@order_1.status).to eq('cancelled')
+      expect(@item_order.status).to eq('unfulfilled')
+      
+    end
   end
 end
