@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # heroku prod won't launch the site.
   namespace :admin do
     get "/", to: "dashboard#index"
-    get "/profile/:user_id", to: "users#show"
+    get "/users/:user_id", to: "users#show"
   end
 
   namespace :merchant do

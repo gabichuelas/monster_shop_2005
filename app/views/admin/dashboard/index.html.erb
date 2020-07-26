@@ -4,7 +4,7 @@
   <h3>Packaged Orders</h3>
   <% @orders.packaged.each do |order| %>
     <span>Order ID: <%= order.id %></span>
-    <span>Placed By: <%= link_to "#{order.user.name}", "/admin/profile/#{order.user.id}" %></span>
+    <span>Placed By: <%= link_to "#{order.user.name}", "/admin/users/#{order.user.id}" %></span>
     <span>Date Created: <%= order.created_at %></span>
   <% end %>
 </section>
@@ -13,7 +13,7 @@
   <h3>Pending Orders</h3>
   <% @orders.pending.each do |order| %>
     <span>Order ID: <%= order.id %></span>
-    <span>Placed By: <%= link_to "#{order.user.name}", "/admin/profile/#{order.user.id}" %></span>
+    <span>Placed By: <%= link_to "#{order.user.name}", "/admin/users/#{order.user.id}" %></span>
     <span>Date Created: <%= order.created_at %></span>
   <% end %>
 </section>
@@ -22,7 +22,7 @@
   <h3>Shipped Orders</h3>
   <% @orders.shipped.each do |order| %>
     <span>Order ID: <%= order.id %></span>
-    <span>Placed By: <%= link_to "#{order.user.name}", "/admin/profile/#{order.user.id}" %></span>
+    <span>Placed By: <%= link_to "#{order.user.name}", "/admin/users/#{order.user.id}" %></span>
     <span>Date Created: <%= order.created_at %></span>
   <% end %>
 </section>
@@ -31,7 +31,7 @@
   <h3>Cancelled Orders</h3>
   <% @orders.cancelled.each do |order| %>
     <span>Order ID: <%= order.id %></span>
-    <span>Placed By: <%= link_to "#{order.user.name}", "/admin/profile/#{order.user.id}" %></span>
+    <span>Placed By: <%= link_to "#{order.user.name}", "/admin/users/#{order.user.id}" %></span>
     <span>Date Created: <%= order.created_at %></span>
   <% end %>
 </section>
