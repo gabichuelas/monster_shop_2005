@@ -51,5 +51,7 @@
 </section>
 <section id="datecreated">
   <p> <%= @order.created_at%></p>
+  <% unless @order.shipped? %>
   <%= link_to 'Cancel Order', "/orders/#{@order.id}", method: :delete %>
+  <% end %>
 </section>
