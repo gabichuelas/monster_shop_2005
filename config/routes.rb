@@ -48,6 +48,7 @@ Rails.application.routes.draw do
 
   # PROFILE ORDERS
   get "/profile/orders", to: "orders#index"
+  get "/profile/orders/:id", to: "orders#show"
 
   # REGISTER A NEW USER
   get "/register", to: "users#new"

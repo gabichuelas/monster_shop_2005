@@ -9,11 +9,14 @@
       <th>Zip</th>
     </tr>
     <tr>
+      <td><p>ID: <%= @order.id %> </p></td>
       <td><p><%= @order.name %> </p></td>
       <td><p><%= @order.address %> </p></td>
       <td><p><%= @order.city %> </p></td>
       <td><p><%= @order.state %> </p></td>
       <td><p><%= @order.zip %> </p></td>
+      <td><p>Status: <%= @order.status %> </p></td>
+
     </tr>
   </table>
 </section>
@@ -31,7 +34,9 @@
   <% @order.item_orders.each do |item_order|%>
     <tr>
     <section id = "item-<%=item_order.item_id%>">
+        <td><%= image_tag(item_order.item.image, alt: "item photo", method: :get) %></td>
         <td><p><%=link_to item_order.item.name, "/items/#{item_order.item_id}"%></p></td>
+        <td><p><%= item_order.item.description%></p></td>
         <td><p><%= link_to item_order.item.merchant.name, "/merchants/#{item_order.item.merchant.id}"%></p></td>
         <td><p><%= number_to_currency(item_order.price)%></p></td>
         <td><p><%= item_order.quantity%></p></td>
