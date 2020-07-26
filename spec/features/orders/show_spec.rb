@@ -63,16 +63,14 @@ RSpec.describe 'As a registered user' do
     - And I see that this order now has an updated status of "cancelled"' do
 
       visit "/profile/orders/#{@order_1.id}"
-      expect(@chain.inventory).to eq(3)
-
       click_on 'Cancel Order'
 
       expect(current_path).to eq("/profile/orders")
       expect(page).to have_content('Your order is now cancelled')
-      expect(@chain.inventory).to eq(5)
+      expect(@chain.inventory).to eq(7)
       expect(@order_1.status).to eq('cancelled')
       expect(@item_order.status).to eq('unfulfilled')
-      
+
     end
   end
 end
