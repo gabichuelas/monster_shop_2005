@@ -44,9 +44,8 @@ RSpec.describe "Merchant dashboard" do
 
   describe "When I visit my merchant dashboard" do
     it "I see the name and full address of the merchant I work for" do
-      visit "/merchant" #<----- Not working correctly. Need to add a new route that goes to: "dashboard#show"
+      visit "/merchant"
 
-      save_and_open_page
       within '#merchant-info' do
         expect(page).to have_content(@meg.name)
         expect(page).to have_content(@meg.address)
