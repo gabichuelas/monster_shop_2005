@@ -24,6 +24,8 @@ group :development, :test do
   gem 'pry'
   gem 'simplecov'
   gem 'shoulda-matchers'
+  gem 'irbtools'
+  gem 'awesome_print'
 end
 
 group :development do
