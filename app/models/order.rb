@@ -28,7 +28,11 @@ class Order <ApplicationRecord
   end
 
   def total_items(merchant)
-    
+    merchant.item_orders.where(order_id: self.id).sum(:quantity)
+  end
+
+  def total_sum(merchant)
+    item_orders.joins(:item).where(items: {merchant_id: merchant.id}).sum('item_orders.quantity * item_orders.price')
   end
 
   enum status: %w(pending packaged shipped cancelled)
