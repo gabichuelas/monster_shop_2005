@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get "/", to: "dashboard#index"
     get "/users/:user_id", to: "users#show"
     patch "/orders/:id", to: "orders#update"
+    get "/merchants/:id", to: "merchants#show"
   end
 
   namespace :merchant do
