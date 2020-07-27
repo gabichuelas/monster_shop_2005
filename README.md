@@ -581,7 +581,7 @@ When I click the cancel button for an order, the following happens:
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 31, All Merchants fulfill items on an order
 
@@ -612,7 +612,7 @@ Orders are sorted by "status" in this order:
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 33, Admin can "ship" an order
 
@@ -659,7 +659,7 @@ Each order listed includes the following information:
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 36, Merchant's Items index page
 
@@ -671,7 +671,7 @@ My URI route should be "/merchant/items"
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 37, Admin can see a merchant's dashboard
 

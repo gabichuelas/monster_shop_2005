@@ -122,8 +122,10 @@ RSpec.describe "Admin dashboard" do
         click_on 'Ship'
       end
 
-      visit "profile/orders/#{@order_3.id}"
+      @order_3.reload
+      expect(@order_3.status).to eq("shipped")
 
+      visit "profile/orders/#{@order_3.id}"
       expect(page).to have_content("Status: shipped")
       expect(page).to_not have_link('Cancel Order')
     end
