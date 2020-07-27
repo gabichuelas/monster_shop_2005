@@ -1,7 +1,7 @@
 class Admin::OrdersController < ApplicationController
-  def ship
-    order = Order.find(params[:id])
-    order.update(status: 'shipped')
+  def update
+    @order = Order.find(params[:id])
+    @order.update(status: params[:status].to_i)
     redirect_to '/admin'
   end
 end

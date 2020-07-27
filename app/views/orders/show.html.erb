@@ -15,7 +15,7 @@
       <td><p><%= @order.city %> </p></td>
       <td><p><%= @order.state %> </p></td>
       <td><p><%= @order.zip %> </p></td>
-      <td><p>Status: <%= @order.status %> </p></td>
+      <td><p>Status: <%= @order.status %></p></td>
 
     </tr>
   </table>
@@ -52,6 +52,6 @@
 <section id="datecreated">
   <p> <%= @order.created_at%></p>
   <% unless @order.shipped? %>
-  <%= link_to 'Cancel Order', "/orders/#{@order.id}", method: :delete %>
+    <%= link_to 'Cancel Order', "/orders/#{@order.id}", method: :delete %>
   <% end %>
 </section>

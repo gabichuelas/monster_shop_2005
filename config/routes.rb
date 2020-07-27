@@ -5,11 +5,13 @@ Rails.application.routes.draw do
   namespace :admin do
     get "/", to: "dashboard#index"
     get "/users/:user_id", to: "users#show"
-    patch "/orders/:id", to: "orders#ship"
+    patch "/orders/:id", to: "orders#update"
+    get "/merchants/:id", to: "merchants#show"
   end
 
   namespace :merchant do
     get "/", to: "dashboard#index"
+    get "/items", to: "items#index"
   end
 
   get "/", to: "welcome#index"
