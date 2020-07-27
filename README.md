@@ -612,7 +612,7 @@ Orders are sorted by "status" in this order:
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 33, Admin can "ship" an order
 
