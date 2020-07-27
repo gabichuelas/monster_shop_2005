@@ -659,7 +659,7 @@ Each order listed includes the following information:
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 36, Merchant's Items index page
 
