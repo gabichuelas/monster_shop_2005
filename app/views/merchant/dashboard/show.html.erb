@@ -4,7 +4,8 @@
   <h2>Merchant Details</h2>
   <p>
     Name: <%= @merchant.name %><br/>
-    Address: <%= @merchant.address %>, <%= @merchant.city %>, <%= @merchant.state %> <%= @merchant.zip %>
+    Address: <%= @merchant.address %>, <%= @merchant.city %>, <%= @merchant.state %> <%= @merchant.zip %><br>
+    <%= link_to "View My Items", "/merchant/items" %>
   </p>
 </section><br><br>
 
@@ -14,6 +15,6 @@
     <span>Order ID: <%= link_to "#{order.id}", "/merchant/orders/#{order.id}" %></span>
     <span>Date Created: <%= order.created_at %></span>
     <span>Number of items in this order: <%= order.total_items(@merchant) %></span>
-    <!-- <span>Total Value: %= number_to_currency(order.total_sum) %</span> -->
+    <span>Total Value: <%= number_to_currency(order.total_sum(@merchant)) %></span>
   <% end %>
 </section>
