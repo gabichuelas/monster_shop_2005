@@ -27,5 +27,9 @@ class Order <ApplicationRecord
     end
   end
 
+  def total_items(merchant)
+    binding.pry
+  end
+
   enum status: %w(pending packaged shipped cancelled)
 end

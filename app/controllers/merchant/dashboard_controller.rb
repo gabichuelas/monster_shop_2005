@@ -3,4 +3,8 @@ class Merchant::DashboardController < ApplicationController
 
   def index
   end
+
+  def show  
+    @merchant = Merchant.find(current_user.merchant_id)
+  end
 end
