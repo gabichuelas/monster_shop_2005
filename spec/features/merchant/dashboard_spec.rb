@@ -12,6 +12,7 @@ RSpec.describe "Merchant dashboard" do
     @brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
 
     @tire = @meg.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
+    @chain = @meg.items.create(name: "Chain", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
     @pull_toy = @brian.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
     @dog_bone = @brian.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", inventory: 21)
 
@@ -25,6 +26,8 @@ RSpec.describe "Merchant dashboard" do
     @order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
     @order_1.item_orders.create!(item: @pull_toy, price: @pull_toy.price, quantity: 3)
     @order_2.item_orders.create!(item: @tire, price: @tire.price, quantity: 1)
+    @order_2.item_orders.create!(item: @chain, price: @chain.price, quantity: 2)
+    @order_2.item_orders.create!(item: @dog_bone, price: @dog_bone.price, quantity: 2)
     @order_3.item_orders.create!(item: @dog_bone, price: @dog_bone.price, quantity: 2)
     @order_4.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
     @order_5.item_orders.create!(item: @pull_toy, price: @pull_toy.price, quantity: 1)
@@ -53,6 +56,28 @@ RSpec.describe "Merchant dashboard" do
         expect(page).to have_content(@meg.state)
         expect(page).to have_content(@meg.zip)
       end
+    end
+
+    it "if any users have pending orders containing items I sell then I see a list of these orders. Each order listed includes:
+      - the ID of the order, which is a link to the order show page /merchant/orders/15
+      - the date the order was made
+      - the total quantity of my items in the order
+      - the total value of my items for that order" do
+
+      visit "/merchant"
+
+      within '.orders' do
+        expect(page).to have_link("#{@order_2.id}")
+        expect(page).to have_content("Date Created: #{@order_2.created_at}")
+        expect(page).to have_content("Number of items in this order: 3")
+        expect(page).to have_content("Total Value: $200")
+      end
+
+      within '.orders' do
+        click_on "#{@order_2.id}"
+      end
+
+      expect(current_path).to eq("/merchant/orders/#{@order_2.id}")
     end
   end
 end
