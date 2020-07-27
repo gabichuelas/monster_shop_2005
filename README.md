@@ -354,7 +354,7 @@ The item image is a link to that item's show page
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 18, Items Index Page Statistics
 
@@ -633,7 +633,7 @@ This is the landing page when a merchant logs in. Here, they will see their cont
 Admin users will see more information on the "/admin/merchants" route that all users see. For example, on this page, an admin user can navigate to each merchant's dashboard under a route like "/admin/merchants/7". This will allow the admin to perform every action that the merchant themselves can perform. Fulfilling merchant items will be an extension in User Stories 61 & 62
 
 ```
-[ ] done
+[X] done
 
 User Story 34, Merchant Dashboard Show Page
 
@@ -643,7 +643,7 @@ I see the name and full address of the merchant I work for
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 35, Merchant Dashboard displays Orders
 
