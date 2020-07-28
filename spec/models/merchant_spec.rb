@@ -94,8 +94,17 @@ describe Merchant, type: :model do
 
       @meg.update(enabled: false)
       @meg.disable_items
-      
+
       expect(@tire.active?).to eq(false)
+    end
+
+    it '#enable_items' do
+
+      @meg.update(enabled: false)
+      expect(@meg.enabled).to eq(false)
+      
+      @meg.enable_items
+      expect(@tire.active?).to eq(true)
     end
   end
 end
