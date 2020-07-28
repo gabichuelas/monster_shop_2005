@@ -24,6 +24,7 @@ class Merchant::ItemsController < ApplicationController
       flash[:error] = @new_item.errors.full_messages.to_sentence
       render :new
     end
+  end
 
   def edit
     @item = Item.find(params[:id])
