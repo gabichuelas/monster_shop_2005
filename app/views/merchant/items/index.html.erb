@@ -1,22 +1,21 @@
-<<<<<<< HEAD
 <h1>My Items</h1>
-=======
-<h1>Your Items</h1>
 
 <% @items.each do |item| %>
   <section class="item-box" id='item-<%=item.id%>'>
     <h2><%= link_to item.name, "/items/#{item.id}" %></h2>
     <%= link_to image_tag("#{item.image}"), "/items/#{item.id}", id: "img-#{item.id}" %>
     <p><%= item.description %></p>
+    <% if item.no_orders? %>
+      <p><%= button_to 'Delete', "/merchant/items/#{item.id}", method: :delete %></p>
+    <% end %>
     <p>Price: <%= number_to_currency(item.price) %></p>
     <p>Sold by: <%= link_to item.merchant.name, "/merchants/#{item.merchant_id}" %></p>
     <p>Inventory: <%= item.inventory %></p>
     <p>Status: <% if item.active? %> Active <% else %> Inactive <% end %></p>
     <% if item.active? %>
-      <%= button_to 'Deactivate', "/merchant/items/#{item.id}/update", method: :patch %>
+      <%= button_to 'Deactivate', "/merchant/items/#{item.id}", method: :patch %>
     <% else %>
-      <%= button_to 'Activate', "/merchant/items/#{item.id}/update", method: :patch %>
+      <%= button_to 'Activate', "/merchant/items/#{item.id}", method: :patch %>
     <% end %>
   </section>
 <% end %>
->>>>>>> b6e67a67b96c4edd9d04edfce6eed6ac5f4a3697

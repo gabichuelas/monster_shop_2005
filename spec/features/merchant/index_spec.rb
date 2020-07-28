@@ -17,7 +17,6 @@ RSpec.describe 'As a merchant employee' do
                                   role: 0)
 
 
-    @tire = @meg.items.create!(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
     @pull_toy = @meg.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
     @dog_bone = @meg.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", inventory: 21)
 
@@ -78,9 +77,8 @@ RSpec.describe 'As a merchant employee' do
       end
 
       expect(current_path).to eq('/merchant/items')
-
       expect(page).to have_content("#{@dog_bone.name} has been deleted")
-      expect(page).to_not have_content(@dog_bone.name)
+      expect(page).to_not have_link(@dog_bone.name)
 
     end
   end
