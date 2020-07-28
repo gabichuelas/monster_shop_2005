@@ -8,7 +8,7 @@ class Merchant::ItemsController < ApplicationController
     end
   end
 
-  def update_status
+  def update
     item = Item.find(params[:id])
     if item.active?
       item.update(active?: false)
