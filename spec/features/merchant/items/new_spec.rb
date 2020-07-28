@@ -67,7 +67,8 @@ RSpec.describe 'As a merchant employee' do
         new_item = Item.last
 
         expect(current_path).to eq("/merchant/items")
-        save_and_open_page
+        expect(page).to have_content("Your new item was saved")
+
         within "#item-#{new_item.id}" do
           expect(page).to have_css("img[src*='https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg']")
         end
