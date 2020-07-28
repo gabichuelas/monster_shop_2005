@@ -53,9 +53,11 @@ RSpec.describe 'Admin merchant index page' do
       describe 'When I visit the merchant index page' do
         it 'And I click on the "disable" button for an enabled merchant; Then all of that merchant\'s items should be deactivated' do
 
-          visit "/admin/merchants"
+          visit "/merchants"
 
-          click_on "Disable"
+          within "#merchant-#{@meg.id}" do
+            click_button('Disable')
+          end
 
           expect(@tire.active?).to eq(false)
           expect(@bike_horn.active?).to eq(false)
