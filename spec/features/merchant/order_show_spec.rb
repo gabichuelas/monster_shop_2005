@@ -36,20 +36,20 @@ RSpec.describe 'As a merchant employee' do
       click_on "#{@order_1.id}" #<------ need to add link to view, only added customer info
     end
 
-    it "I see the customer's name and address" do
+    xit "I see the customer's name and address" do
       expect(page).to have_content("Customer Name: #{@order_1.name}")
       expect(page).to have_content("Address: #{@order_1.address} #{@order_1.city}, #{@order_1.state} #{@order_1.zip}")
     end
 
-    it 'I only see the items in the order that are being purchased from my merchant' do
+    xit 'I only see the items in the order that are being purchased from my merchant' do
       expect(page).to have_content(@chain.name) #chain is the merchant meg's item
     end
 
-    it 'I do not see any items in the order being purchased from other merchants' do
+    xit 'I do not see any items in the order being purchased from other merchants' do
       expect(page).to_not have_content(@dog_bone.name) #dog_bone is the merchant brian's item
     end
 
-    it 'For each item, I see the name of the item which links to the item\'s show page, an image, price, and quantity user is purchasing for this item' do
+    xit 'For each item, I see the name of the item which links to the item\'s show page, an image, price, and quantity user is purchasing for this item' do
       expect(page).to have_link(@chain.name, href: "/merchant/items/#{@chain.id}")
       expect(page).to have_css("img[src*='#{@chain.image}']")
       expect(page).to have_content("Price: $#{@chain.price}.00") # Can we use number to currency instead of hard coding here?
@@ -61,38 +61,38 @@ RSpec.describe 'As a merchant employee' do
               or less than my current inventory quantity for that item,
               And I have not already \"fulfilled\" that item' do
 
-      it 'Then I see a button or link to "fulfill" that item' do
+      xit 'Then I see a button or link to "fulfill" that item' do
         within "#item-#{@chain.id}" do
           expect(page).to have_button('Fulfill Order') #<------ need to add button to view
         end
       end
 
       describe 'When I click on that link or button' do
-        it 'I am returned to the order show page' do
+        xit 'I am returned to the order show page' do
           click_on 'Fulfill Order'
           expect(current_path).to eq("/merchant/orders/#{@order_2.id}")
         end
 
-        it 'I see the item is now fulfilled' do
+        xit 'I see the item is now fulfilled' do
           click_on 'Fulfill Order'
           within "#item-#{@chain.id}" do
             expect(page).to have_content("Order Fulfilled") #<----- In view, you can have if item is not fulfilled, have this button to fulfill order, else <p> Order Fulfilled </p>
           end
         end
 
-        it 'I also see a flash message indicating that I have fulfilled that item' do
+        xit 'I also see a flash message indicating that I have fulfilled that item' do
           click_on 'Fulfill Order'
           expect(page).to have_content("This order has been fulfilled") #<----- Add flash message
         end
 
-        it "the item's inventory quantity is permanently reduced by the user's desired quantity" do
+        xit "the item's inventory quantity is permanently reduced by the user's desired quantity" do
           click_on 'Fulfill Order'
           visit "/items/#{@chain.id}"
 
           expect(page).to have_content("Inventory: 3") #<------ I believe this should be 3, but my maths may be wrong.
         end
 
-        it "If I have already fulfilled this item, I see text indicating such" do
+        xit "If I have already fulfilled this item, I see text indicating such" do
           click_on 'Fulfill Order'
           visit "/merchant/orders/#{@order_3.id}" #<---- will need to uncomment order_3 and add a migration?
 
