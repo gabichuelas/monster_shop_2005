@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get "/merchants/:id", to: "merchants#show"
     get "/merchants", to: "merchants#index"
     patch "/merchants/:id", to: "merchants#update"
+    get "merchants/:id/items", to: "items#index"
   end
 
   namespace :merchant do

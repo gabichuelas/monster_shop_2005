@@ -1,5 +1,5 @@
 <h1>Your Items</h1>
-
+<p align="center"><%= link_to "Add New Item", "/merchant/items/new" %></p>
 <% @items.each do |item| %>
   <section class="item-box" id='item-<%=item.id%>'>
     <h2><%= link_to item.name, "/items/#{item.id}" %></h2>

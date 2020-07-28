@@ -26,10 +26,9 @@ RSpec.describe 'As a merchant employee' do
     describe 'When I click on the link to add a new item, I see a form where I can add new information about an item, including: name, description, optional thumbnail image URL, a price (> $0), and current inventory (must be >= 0)' do
       it 'When I submit valid information and submit the form, I am taken back to my items page; I see a flash message indicating my new item is saved; I see the new item on the page, and it is enabled and available for sale' do
         #
-        visit "/items"
-
+        visit "merchant/items"
         click_on "Add New Item"
-        expect(current_path).to eq("/items/new")
+        expect(current_path).to eq("/merchant/items/new")
 
         fill_in 'Name', with: 'Shift Cable, Road'
         fill_in 'Description', with: 'Round head for STI road levers'
@@ -37,10 +36,10 @@ RSpec.describe 'As a merchant employee' do
         fill_in 'Price', with: 6.50
         fill_in 'Inventory', with: 100
 
-        click_on 'Add Item'
+        click_on 'Create Item'
         new_item = Item.last
 
-        expect(current_path).to eq("/items")
+        expect(current_path).to eq("/merchant/items")
 
         within "#item-#{new_item.id}" do
           expect(page).to have_link(new_item.name)
