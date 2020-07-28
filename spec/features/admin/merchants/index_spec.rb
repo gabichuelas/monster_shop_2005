@@ -84,6 +84,29 @@ RSpec.describe 'Admin merchant index page' do
           end
         end
       end
+
+      describe 'When I visit the merchant index page' do
+        it 'And I click on the "enable" button for an disabled merchant; Then all of that merchant\'s items should be activated' do
+
+          visit "/merchants"
+
+          within "#merchant-#{@meg.id}" do
+            click_button('Disable')
+            expect(current_path).to eq('/merchants')
+          end
+
+          within "#merchant-#{@meg.id}" do
+            click_button('Enable')
+            expect(current_path).to eq('/merchants')
+          end
+          save_and_open_page
+
+          expect(@meg.items.all?(:active?)).to eq(true)
+        end
+      end
+
     end
   end
 end
+
+# Then all of that merchant's items should be activated

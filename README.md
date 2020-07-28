@@ -724,7 +724,7 @@ And I see a flash message that the merchant's account is now enabled
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 41, Enabled Merchant Item's are active
 
