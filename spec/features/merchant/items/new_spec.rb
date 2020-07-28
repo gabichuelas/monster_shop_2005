@@ -32,7 +32,7 @@ RSpec.describe 'As a merchant employee' do
 
         fill_in 'Name', with: 'Shift Cable, Road'
         fill_in 'Description', with: 'Round head for STI road levers'
-        fill_in 'Image', with: ''
+        fill_in 'Image', with: 'https://cdn.bike24.net/i/mb/04/f1/58/146905-00-d-258058.jpg'
         fill_in 'Price', with: 6.50
         fill_in 'Inventory', with: 100
 
