@@ -13,6 +13,18 @@ class Merchant::ItemsController < ApplicationController
   end
 
   def update
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+    if @item.save
+      flash[:notice] = "#{@item.name} has been updated"
+      redirect_to '/merchant/items'
+    else
+      flash[:error] = @item.errors.full_messages.to_sentence
+      render :edit
+    end
+  end
+
+  def update_status
     item = Item.find(params[:id])
     if item.active?
       item.update(active?: false)
@@ -29,5 +41,11 @@ class Merchant::ItemsController < ApplicationController
     item.destroy
     flash[:notice] = "#{item.name} has been deleted"
     redirect_to '/merchant/items'
+  end
+
+  private
+
+  def item_params
+    params.permit(:name,:description,:price,:inventory,:image)
   end
 end
