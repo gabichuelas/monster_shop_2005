@@ -711,7 +711,7 @@ Then all of that merchant's items should be deactivated
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 40, Admin enables a merchant account
 
