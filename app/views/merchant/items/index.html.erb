@@ -5,6 +5,7 @@
     <h2><%= link_to item.name, "/items/#{item.id}" %></h2>
     <%= link_to image_tag("#{item.image}"), "/items/#{item.id}", id: "img-#{item.id}" %>
     <p><%= item.description %></p>
+    <%= button_to 'Edit', "/merchant/items/#{item.id}/edit", method: :get %>
     <% if item.no_orders? %>
       <p><%= button_to 'Delete', "/merchant/items/#{item.id}", method: :delete %></p>
     <% end %>

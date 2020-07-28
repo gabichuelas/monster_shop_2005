@@ -87,18 +87,18 @@ RSpec.describe 'As a merchant employee' do
     it "can edit an items info" do
       visit "/merchant/items"
 
-      within "#item-#{@tire.id}" do
-        expect(page).to_not have_button('Edit')
+      within "#item-#{@chain.id}" do
+        expect(page).to have_button('Edit')
         click_on "Edit"
       end
 
-      expect(current_path).to eq("/merchant/items/#{@tire.id}/edit")
+      expect(current_path).to eq("/merchant/items/#{@chain.id}/edit")
 
-      expect(page).to have_content(@tire.name)
-      expect(page).to have_content(@tire.description)
-      expect(page).to have_content(@tire.price)
-      expect(page).to have_content(@tire.image)
-      expect(page).to have_content(@tire.inventory)
+      expect(page).to have_content(@chain.name)
+      expect(page).to have_content(@chain.description)
+      expect(page).to have_content(@chain.price)
+      expect(page).to have_content(@chain.image)
+      expect(page).to have_content(@chain.inventory)
 
       fill_in "Description", with: "Indestructable"
       click_on "Submit"
@@ -114,16 +114,6 @@ RSpec.describe 'As a merchant employee' do
   end
 end
 
-
-# User Story 44, Merchant deletes an item
-#
-# As a merchant employee
-# When I visit my items page
-# I see a button or link to delete the item next to each item that has never been ordered
-# When I click on the "delete" button or link for an item
-# I am returned to my items page
-# I see a flash message indicating this item is now deleted
-# I no longer see this item on the page
 
 # User Story 47, Merchant edits an item
 #
