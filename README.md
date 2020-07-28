@@ -778,7 +778,7 @@ I see the item is now active
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 44, Merchant deletes an item
 
@@ -828,7 +828,7 @@ All fields are re-populated with my previous data
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 47, Merchant edits an item
 
@@ -850,7 +850,7 @@ If I left the image field blank, I see a placeholder image for the thumbnail
 ```
 
 ```
-[ ] done
+[x] done
 
 User Story 48, Merchant cannot edit an item if details are bad/missing
 
