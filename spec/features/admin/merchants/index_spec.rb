@@ -62,6 +62,28 @@ RSpec.describe 'Admin merchant index page' do
           expect(@brian.items.all?(:active?)).to eq(false)
         end
       end
+
+      describe "When I click on the \"enable\" button" do
+        it 'I\'m returned to admin\'s merchant index and a flash message informs me that merchant\'s account is now enabled' do
+          visit '/merchants'
+
+          within "#merchant-#{@meg.id}" do
+            click_button('Disable')
+            expect(current_path).to eq('/merchants')
+          end
+
+          within "#merchant-#{@meg.id}" do
+            click_button('Enable')
+            expect(current_path).to eq('/merchants')
+          end
+
+          expect(page).to have_content('This merchant\'s account is now enabled.')
+
+          within "#merchant-#{@meg.id}" do
+            expect(page).to have_button('Disable')
+          end
+        end
+      end
     end
   end
 end
