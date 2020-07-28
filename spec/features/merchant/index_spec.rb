@@ -94,12 +94,6 @@ RSpec.describe 'As a merchant employee' do
 
       expect(current_path).to eq("/merchant/items/#{@chain.id}/edit")
 
-      # expect(page).to have_content(@chain.name)
-      # expect(page).to have_content(@chain.description)
-      # expect(page).to have_content(@chain.price)
-      # expect(page).to have_content(@chain.image)
-      # expect(page).to have_content(@chain.inventory)
-
       fill_in :description, with: "Indestructable"
       click_on 'Update Item'
 
@@ -111,23 +105,25 @@ RSpec.describe 'As a merchant employee' do
 
     end
   end
+  describe "When I visit my items page" do
+    it "and edit an items info, all fields must correct and not missing" do
+      visit "/merchant/items"
+
+      within "#item-#{@chain.id}" do
+        expect(page).to have_button('Edit')
+        click_on "Edit"
+      end
+
+      expect(current_path).to eq("/merchant/items/#{@chain.id}/edit")
+
+      fill_in :name, with: ""
+      fill_in :description, with: "Indestructable"
+      click_on 'Update Item'
+
+      expect(current_path).to eq("/merchant/items/#{@chain.id}/edit")
+
+      expect(page).to have_content("Name can't be blank")
+
+    end
+  end
 end
-
-
-# User Story 47, Merchant edits an item
-#
-# As a merchant employee
-# When I visit my items page
-# And I click the edit button or link next to any item
-# Then I am taken to a form similar to the 'new item' form
-# The form is pre-populated with all of this item's information
-# I can change any information, but all of the rules for adding a new item still apply:
-# - name and description cannot be blank
-# - price cannot be less than $0.00
-# - inventory must be 0 or greater
-#
-# When I submit the form
-# I am taken back to my items page
-# I see a flash message indicating my item is updated
-# I see the item's new information on the page, and it maintains its previous enabled/disabled state
-# If I left the image field blank, I see a placeholder image for the thumbnail
