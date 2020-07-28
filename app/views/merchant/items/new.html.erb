@@ -3,19 +3,19 @@
 <center>
   <%= form_tag "/merchant/items", method: :post do %>
     <%= label_tag :name %>
-    <%= text_field_tag :name%>
+    <%= text_field_tag :name, (if @new_item != nil then @new_item.name else nil end) %>
 
     <%= label_tag :description %>
-    <%= text_field_tag :description %>
+    <%= text_field_tag :description, (if @new_item != nil then @new_item.description else nil end) %>
 
     <%= label_tag :price %>
-    <%= text_field_tag :price %>
+    <%= text_field_tag :price, (if @new_item != nil then @new_item.price end) %>
 
     <%= label_tag :image %>
-    <%= text_field_tag :image, "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg" %>
+    <%= text_field_tag :image, (if @new_item != nil then @new_item.image else "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg" end)  %>
 
     <%= label_tag :inventory %>
-    <%= text_field_tag :inventory %>
+    <%= text_field_tag :inventory, (if @new_item != nil then @new_item.inventory end) %>
 
     <%= submit_tag 'Create Item' %>
   <% end %>

@@ -73,6 +73,23 @@ RSpec.describe 'As a merchant employee' do
           expect(page).to have_css("img[src*='https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg']")
         end
       end
+
+      it 'If any of my data is incorrect or missing (except image); Then I am returned to the form; I see one or more flash messages indicating each error I caused; All fields are re-populated with my previous data' do
+        #
+        visit "/merchant/items"
+
+        click_on "Add New Item"
+        expect(current_path).to eq("/merchant/items/new")
+
+        # fill_in 'Name', with: 'Shift Cable, Road'
+        fill_in 'Description', with: 'Round head for STI road levers'
+        fill_in 'Price', with: 6.50
+        fill_in 'Inventory', with: 100
+
+        click_on 'Create Item'
+
+        expect(page).to have_content("Name can't be blank")
+      end
     end
   end
 end

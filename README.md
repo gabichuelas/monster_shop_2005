@@ -792,7 +792,7 @@ I no longer see this item on the page
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 45, Merchant adds an item
 

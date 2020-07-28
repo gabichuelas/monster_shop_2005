@@ -20,7 +20,6 @@ Rails.application.routes.draw do
     patch '/items/:id/update', to: 'items#update'
     get "/items/new", to: "items#new"
     post "/items", to: "items#create"
-
   end
 
   get "/", to: "welcome#index"
