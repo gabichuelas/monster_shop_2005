@@ -60,7 +60,6 @@ RSpec.describe 'As a merchant employee' do
 
         fill_in 'Name', with: 'Shift Cable, Road'
         fill_in 'Description', with: 'Round head for STI road levers'
-        fill_in 'Image', with: nil
         fill_in 'Price', with: 6.50
         fill_in 'Inventory', with: 100
 
@@ -68,9 +67,9 @@ RSpec.describe 'As a merchant employee' do
         new_item = Item.last
 
         expect(current_path).to eq("/merchant/items")
-
+        save_and_open_page
         within "#item-#{new_item.id}" do
-          expect(page).to have_css("img[src*='/app/assets/images/item_default.png']")
+          expect(page).to have_css("img[src*='https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg']")
         end
       end
     end
