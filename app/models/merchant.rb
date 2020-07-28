@@ -29,4 +29,19 @@ class Merchant <ApplicationRecord
   def pending_orders
     orders.where(status: "pending").distinct
   end
+
+  def disable
+    self.update(enabled: false)
+    self.items.each do |item|
+      item.update(active?: false)
+    end
+  end
+
+  def enable
+    self.update(enabled: true)
+    self.items.each do |item|
+      item.update(active?: true)
+    end
+  end
+
 end

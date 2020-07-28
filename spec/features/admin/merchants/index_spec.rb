@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe 'Admin merchant index page' do
   before(:each) do
     @existing_admin = User.create!(name: "Chuck Norris",
@@ -49,6 +47,19 @@ RSpec.describe 'Admin merchant index page' do
           within "#merchant-#{@meg.id}" do
             expect(page).to_not have_button('Disable')
           end
+        end
+      end
+
+      describe 'When I visit the merchant index page' do
+        it 'And I click on the "disable" button for an enabled merchant; Then all of that merchant\'s items should be deactivated' do
+
+          visit "/merchants"
+
+          within "#merchant-#{@brian.id}" do
+            click_button('Disable')
+          end
+
+          expect(@brian.items.all?(:active?)).to eq(false)
         end
       end
     end

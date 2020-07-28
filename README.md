@@ -687,7 +687,7 @@ Then I see everything that merchant would see
 All users can see a merchant index page which will list some basic information about each merchant. When admins visit this page, however, more functionality is found, and it is found at the "/admin/merchants" route.
 
 ```
-[ ] done
+[X] done
 
 User Story 38, Admin disables a merchant account
 
@@ -700,7 +700,7 @@ And I see a flash message that the merchant's account is now disabled
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 39, Disabled Merchant Item's are inactive
 

@@ -6,10 +6,10 @@ class Admin::MerchantsController < ApplicationController
   def update
     merchant = Merchant.find(params[:id])
     if merchant.enabled == true
-      merchant.update(enabled: false)
+      merchant.disable
       flash[:notice] = "This merchant\'s account is now disabled."
     else
-      merchant.update(enabled: true) #<---- this may be wrong?
+      merchant.enable
       flash[:notice] = "This merchant\'s account is now enabled."
     end
     redirect_to "/merchants"
