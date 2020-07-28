@@ -30,13 +30,15 @@ class Merchant <ApplicationRecord
     orders.where(status: "pending").distinct
   end
 
-  def disable_items
+  def disable
+    self.update(enabled: false)
     self.items.each do |item|
       item.update(active?: false)
     end
   end
 
-  def enable_items
+  def enable
+    self.update(enabled: true)
     self.items.each do |item|
       item.update(active?: true)
     end

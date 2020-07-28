@@ -90,20 +90,18 @@ describe Merchant, type: :model do
       expect(jack.pending_orders).to eq([order_9])
     end
 
-    it '#disable_items' do
+    it '#disable & #enable' do
 
-      @meg.update(enabled: false)
-      @meg.disable_items
+      expect(@meg.enabled).to eq(true)
 
-      expect(@tire.active?).to eq(false)
-    end
+      @meg.disable
 
-    it '#enable_items' do
-
-      @meg.update(enabled: false)
       expect(@meg.enabled).to eq(false)
-      
-      @meg.enable_items
+      expect(@tire.active?).to eq(false)
+
+      @meg.enable
+
+      expect(@meg.enabled).to eq(true)
       expect(@tire.active?).to eq(true)
     end
   end

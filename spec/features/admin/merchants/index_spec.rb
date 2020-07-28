@@ -55,13 +55,11 @@ RSpec.describe 'Admin merchant index page' do
 
           visit "/merchants"
 
-          within "#merchant-#{@meg.id}" do
+          within "#merchant-#{@brian.id}" do
             click_button('Disable')
           end
 
-          expect(@tire.active?).to eq(false)
-          expect(@bike_horn.active?).to eq(false)
-          expect(@bike_lock.active?).to eq(false)
+          expect(@brian.items.all?(:active?)).to eq(false)
         end
       end
     end
