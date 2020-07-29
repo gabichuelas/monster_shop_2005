@@ -38,7 +38,7 @@ RSpec.describe 'merchant show page', type: :feature do
 
       it 'And I click on a merchant\'s name; Then my URI route should be ("/admin/merchants/6"); Then I see everything that merchant would see' do
 
-        visit "/merchants"
+        visit "/admin/merchants"
         click_on "Brian's Bike Shop"
         expect(current_path).to eq("/admin/merchants/#{@bike_shop.id}")
 
