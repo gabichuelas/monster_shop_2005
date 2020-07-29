@@ -9,14 +9,34 @@
 Merchant.destroy_all
 Item.destroy_all
 
+#users
 @admin = User.create!(name: "Bob Vance",
-                              address: "123 ABC St.",
-                              city: "Denver",
-                              state: "CO",
-                              zip: "80202",
-                              email: "admin@hotmail.com",
-                              password: "qwer",
-                              role: 2)
+                   address: "123 ABC St.",
+                      city: "Denver",
+                     state: "CO",
+                       zip: "80202",
+                     email: "admin@hotmail.com",
+                  password: "adm",
+                      role: 2)
+
+@merchant_employee = User.create!(name: "Jose",
+                               address: "789 Jkl St.",
+                                  city: "Denver",
+                                 state: "Colorado",
+                                   zip: "80202",
+                                 email: "merchant@hotmail.com",
+                              password: "mer",
+                                  role: 1,
+                           merchant_id: bike.id)
+
+@user = User.create!(name: "Bob Vance",
+                  address: "123 ABC St.",
+                     city: "Denver",
+                    state: "CO",
+                      zip: "80202",
+                    email: "example@hotmail.com",
+                 password: "use",
+                     role: 0)
 
 
 #merchants
