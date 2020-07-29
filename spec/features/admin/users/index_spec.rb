@@ -22,7 +22,7 @@ RSpec.describe 'As an admin user' do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
       visit "/admin/users"
-      expect(current_path).to eq("/public/404")
+      expect(page).to have_content("404")
     end
 
     it 'I see all users in the system; Each user\'s name is a link to a show page for that user ("/admin/users/5")' do
@@ -48,17 +48,17 @@ RSpec.describe 'As an admin user' do
 
       within "#user-#{@user.id}" do
         expect(page).to have_content("Registered on: #{@user.created_at}")
-        expect(page).to have_content("Type: #{@user.created_at}")
+        expect(page).to have_content("Type: #{@user.role}")
       end
 
       within "#user-#{@employee.id}" do
         expect(page).to have_content("Registered on: #{@employee.created_at}")
-        expect(page).to have_content("Type: #{@employee.created_at}")
+        expect(page).to have_content("Type: #{@employee.role}")
       end
 
       within "#user-#{@admin.id}" do
         expect(page).to have_content("Registered on: #{@admin.created_at}")
-        expect(page).to have_content("Type: #{@admin.created_at}")
+        expect(page).to have_content("Type: #{@admin.role}")
       end
     end
   end
