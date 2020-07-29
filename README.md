@@ -939,7 +939,7 @@ I see an "enable" button next to any merchants whose accounts are disabled
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 53, Admin User Index Page
 
