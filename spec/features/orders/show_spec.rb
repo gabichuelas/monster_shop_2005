@@ -76,7 +76,7 @@ RSpec.describe 'As a registered user' do
       expect(current_path).to eq("/profile/orders")
       expect(page).to have_content('Your order is now cancelled')
       expect(@order_1.status).to eq('cancelled')
-      expect(@order_1.item_orders[0].status).to eq('unfulfilled')
+      expect(@item_order.status).to eq('unfulfilled')
       expect(@item_order.quantity + @chain.inventory).to eq(7)
     end
   end

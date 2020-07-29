@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     patch "/items/:id", to: "items#update"
     patch "/items/:id/update_status", to: "items#update_status"
     delete 'items/:id', to: 'items#destroy'
+    patch  "/item_orders/:id", to: "item_orders#update"
   end
 
   get "/", to: "welcome#index"
