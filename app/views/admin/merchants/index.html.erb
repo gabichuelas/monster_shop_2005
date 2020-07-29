@@ -4,7 +4,7 @@
   <% @merchants.each do |merchant|%>
     <section class = "grid-item">
        <section id='merchant-<%= merchant.id %>'>
-        <h2><%=link_to merchant.name, "admin/merchants/#{merchant.id}" %></h2>
+        <h2><%=link_to merchant.name, "/admin/merchants/#{merchant.id}" %></h2>
         <%= button_to 'Disable', "/admin/merchants/#{merchant.id}", method: :patch if merchant.enabled? %>
         <%= button_to 'Enable', "/admin/merchants/#{merchant.id}", method: :patch if !merchant.enabled? %>
     </section>
