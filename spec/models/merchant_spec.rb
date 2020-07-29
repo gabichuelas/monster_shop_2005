@@ -97,6 +97,7 @@ describe Merchant, type: :model do
       @meg.disable
 
       expect(@meg.enabled).to eq(false)
+
       expect(@tire.active?).to eq(false)
 
       @meg.enable

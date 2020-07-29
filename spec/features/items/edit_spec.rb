@@ -60,12 +60,13 @@ RSpec.describe "As a Visitor" do
         fill_in 'Name', with: ""
         fill_in 'Price', with: 110
         fill_in 'Description', with: "They're a bit more expensive, and they kinda do pop sometimes, but whatevs.. this is retail."
+        # image is now optional as of US45-46
         fill_in 'Image', with: ""
         fill_in 'Inventory', with: 11
 
         click_button "Update Item"
 
-        expect(page).to have_content("Name can't be blank and Image can't be blank")
+        expect(page).to have_content("Name can't be blank")
         expect(page).to have_button("Update Item")
       end
     end
