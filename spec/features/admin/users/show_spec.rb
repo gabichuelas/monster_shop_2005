@@ -19,10 +19,12 @@ RSpec.describe 'As an admin user' do
 
       expect(page).to have_content('Regular User')
       expect(page).to have_content('Garbled St.')
-      expect(page).to have_content('Denver, CO')
+      expect(page).to have_content('Denver, Colorado')
       expect(page).to have_content('80202')
       expect(page).to have_content('user@hotmail.com')
       expect(page).to have_link("Change Password")
+
+      expect(page).to_not have_link("Edit Profile")
     end
   end
 end
