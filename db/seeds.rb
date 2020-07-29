@@ -27,7 +27,7 @@ Item.destroy_all
                                  email: "merchant@hotmail.com",
                               password: "mer",
                                   role: 1,
-                           merchant_id: bike.id)
+                           merchant_id: bike_shop.id)
 
 @user = User.create!(name: "Bob Vance",
                   address: "123 ABC St.",
@@ -37,6 +37,14 @@ Item.destroy_all
                     email: "example@hotmail.com",
                  password: "use",
                      role: 0)
+
+#orders
+
+@order_1 = @user.orders.create!(name: 'Meg', address: '123 Stang St', city: 'Hershey', state: 'PA', zip: 80218)
+@order_2 = @user.orders.create!(name: 'Cory', address: '567 Up St', city: 'Mars', state: 'CO', zip: 80218)
+
+
+
 
 
 #merchants
@@ -56,9 +64,9 @@ bike_lock = bike_shop.items.create(name: "Krytonite Lock", description: "Keep yo
 #dog_shop items
 pull_toy = dog_shop.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
 
-dog_bone = dog_shop.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
+dog_bone = dog_shop.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", inventory: 21)
 
-dog_treat = dog_shop.items.create(name: "Alaska's Organic Dog Treats", description: "Give your pup something really tasty and healthy!", price: 10, image: "https://alaskasbakery.com/wp-content/uploads/2016/08/all31.png", active?:false, inventory: 21)
+dog_treat = dog_shop.items.create(name: "Alaska's Organic Dog Treats", description: "Give your pup something really tasty and healthy!", price: 10, image: "https://alaskasbakery.com/wp-content/uploads/2016/08/all31.png", inventory: 21)
 
 #surf_shop items
 
