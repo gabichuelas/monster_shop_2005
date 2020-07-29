@@ -38,14 +38,6 @@ Item.destroy_all
                  password: "use",
                      role: 0)
 
-#orders
-
-@order_1 = @user.orders.create!(name: 'Meg', address: '123 Stang St', city: 'Hershey', state: 'PA', zip: 80218)
-@order_2 = @user.orders.create!(name: 'Cory', address: '567 Up St', city: 'Mars', state: 'CO', zip: 80218)
-
-
-
-
 
 #merchants
 bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
@@ -75,3 +67,16 @@ surfboard = surf_shop.items.create(name: "Surfboard", description: "Hang ten all
 surf_suit = surf_shop.items.create(name: "UV Surf Suit", description: "Protect yourself from the rays and look good while surfing.", price: 40, image: "https://cdn.shopify.com/s/files/1/0029/3067/1665/products/liva-uv-surf-suit-14032653615187_2000x.jpg?v=1581401521", inventory: 21)
 
 board_wax = surf_shop.items.create(name: "Mr Zogs Sex Wax", description: "Help your feet grip the board with this classic board wax.", price: 40, image: "https://nextadventure.net/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/s/e/sex_wax_tropical_water_surf.jpg", inventory: 21)
+
+
+
+#orders
+order_1 = @user.orders.create!(name: 'Meg', address: '123 Stang St', city: 'Hershey', state: 'PA', zip: 80218)
+order_2 = @user.orders.create!(name: 'Cory', address: '567 Up St', city: 'Mars', state: 'CO', zip: 80218)
+
+item_order = order_1.item_orders.create!(item: tire, price: tire.price, quantity: 2, status: 0)
+item_order2 = order_1.item_orders.create!(item: bike_horn, price: bike_horn.price, quantity: 1, status: 1)
+item_order3 = order_2.item_orders.create!(item: bike_lock, price: bike_lock.price, quantity: 2, status: 0)
+item_order4 = order_2.item_orders.create!(item: pull_toy, price: pull_toy.price, quantity: 1, status: 0)
+item_order5 = order_2.item_orders.create!(item: dog_bone, price: dog_bone.price, quantity: 1, status: 0)
+item_order6 = order_2.item_orders.create!(item: dog_treat, price: dog_treat.price, quantity: 1, status: 0)
