@@ -103,6 +103,28 @@ RSpec.describe 'Admin merchant index page' do
           expect(@brian.items.all? {|item| item.active?}).to eq(true)
         end
       end
+
+      it 'I see all merchants in the system; their names link to their merchant dashboard (/admin/merchants/5)' do
+
+        visit "/admin/merchants"
+        expect(page).to have_link("Brian's Dog Shop")
+        expect(page).to have_link("Meg's Bike Shop")
+        click_on "Meg's Bike Shop"
+        expect(current_path).to eq("/admin/merchants/#{@meg.id}")
+      end
+
+      it 'Next to each merchant\'s name I see their city and state' do
+
+        visit "/admin/merchants"
+
+        within "#merchant-#{@brian.id}" do
+          expect(page).to have_content('Denver, CO')
+        end
+
+        within "#merchant-#{@meg.id}" do
+          expect(page).to have_content('Denver, CO')
+        end
+      end
     end
   end
 end
