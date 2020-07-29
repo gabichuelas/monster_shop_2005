@@ -9,22 +9,40 @@
 Merchant.destroy_all
 Item.destroy_all
 
+#users
 @admin = User.create!(name: "Bob Vance",
-                              address: "123 ABC St.",
-                              city: "Denver",
-                              state: "CO",
-                              zip: "80202",
-                              email: "admin@hotmail.com",
-                              password: "qwer",
-                              role: 2)
+                   address: "123 ABC St.",
+                      city: "Denver",
+                     state: "CO",
+                       zip: "80202",
+                     email: "admin@hotmail.com",
+                  password: "adm",
+                      role: 2)
+
+@merchant_employee = User.create!(name: "Jose",
+                               address: "789 Jkl St.",
+                                  city: "Denver",
+                                 state: "Colorado",
+                                   zip: "80202",
+                                 email: "merchant@hotmail.com",
+                              password: "mer",
+                                  role: 1,
+                           merchant_id: bike_shop.id)
+
+@user = User.create!(name: "Bob Vance",
+                  address: "123 ABC St.",
+                     city: "Denver",
+                    state: "CO",
+                      zip: "80202",
+                    email: "example@hotmail.com",
+                 password: "use",
+                     role: 0)
 
 
 #merchants
 bike_shop = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
 dog_shop = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80210)
 surf_shop = Merchant.create(name: "Corey's Surf Shop", address: '77 Beach Way', city: 'San Diego', state: 'CA', zip: 90210)
-
-@merchant_employee = User.create!(name: "Jose", address: "789 Jkl St.", city: "Denver", state: "Colorado", zip: "80202", email: "example4@hotmail.com", password: "qwer", role: 1, merchant_id: bike_shop.id)
 
 #bike_shop items
 tire = bike_shop.items.create(name: "Gatorskins", description: "They'll never pop!", price: 100, image: "https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588", inventory: 12)
@@ -36,9 +54,9 @@ bike_lock = bike_shop.items.create(name: "Krytonite Lock", description: "Keep yo
 #dog_shop items
 pull_toy = dog_shop.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
 
-dog_bone = dog_shop.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", active?:false, inventory: 21)
+dog_bone = dog_shop.items.create(name: "Dog Bone", description: "They'll love it!", price: 21, image: "https://img.chewy.com/is/image/catalog/54226_MAIN._AC_SL1500_V1534449573_.jpg", inventory: 21)
 
-dog_treat = dog_shop.items.create(name: "Alaska's Organic Dog Treats", description: "Give your pup something really tasty and healthy!", price: 10, image: "https://alaskasbakery.com/wp-content/uploads/2016/08/all31.png", active?:false, inventory: 21)
+dog_treat = dog_shop.items.create(name: "Alaska's Organic Dog Treats", description: "Give your pup something really tasty and healthy!", price: 10, image: "https://alaskasbakery.com/wp-content/uploads/2016/08/all31.png", inventory: 21)
 
 #surf_shop items
 
@@ -47,3 +65,14 @@ surfboard = surf_shop.items.create(name: "Surfboard", description: "Hang ten all
 surf_suit = surf_shop.items.create(name: "UV Surf Suit", description: "Protect yourself from the rays and look good while surfing.", price: 40, image: "https://cdn.shopify.com/s/files/1/0029/3067/1665/products/liva-uv-surf-suit-14032653615187_2000x.jpg?v=1581401521", inventory: 21)
 
 board_wax = surf_shop.items.create(name: "Mr Zogs Sex Wax", description: "Help your feet grip the board with this classic board wax.", price: 40, image: "https://nextadventure.net/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/s/e/sex_wax_tropical_water_surf.jpg", inventory: 21)
+
+#orders
+order_1 = @user.orders.create!(name: 'Meg', address: '123 Stang St', city: 'Hershey', state: 'PA', zip: 80218)
+order_2 = @user.orders.create!(name: 'Cory', address: '567 Up St', city: 'Mars', state: 'CO', zip: 80218)
+
+item_order = order_1.item_orders.create!(item: tire, price: tire.price, quantity: 2, status: 0)
+item_order2 = order_1.item_orders.create!(item: bike_horn, price: bike_horn.price, quantity: 1, status: 1)
+item_order3 = order_2.item_orders.create!(item: bike_lock, price: bike_lock.price, quantity: 2, status: 0)
+item_order4 = order_2.item_orders.create!(item: pull_toy, price: pull_toy.price, quantity: 1, status: 0)
+item_order5 = order_2.item_orders.create!(item: dog_bone, price: dog_bone.price, quantity: 1, status: 0)
+item_order6 = order_2.item_orders.create!(item: dog_treat, price: dog_treat.price, quantity: 1, status: 0)

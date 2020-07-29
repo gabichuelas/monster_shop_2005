@@ -79,14 +79,5 @@ RSpec.describe 'As a registered user' do
       expect(@item_order.status).to eq('unfulfilled')
       expect(@item_order.quantity + @chain.inventory).to eq(7)
     end
-
-    # it 'when all items in an order have been fulfilled by their merchants, the order status changes from pending to packaged' do
-    #
-    #   visit "/profile/orders/#{@order_1.id}"
-    #   expect(page).to have_content("Status: pending")
-    #
-    #   visit "/profile/orders/#{@order_2.id}"
-    #   expect(page).to have_content("Status: packaged")
-    # end
   end
 end

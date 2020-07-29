@@ -1,4 +1,10 @@
 class Admin::MerchantsController < ApplicationController
+  before_action :require_admin
+
+  def index
+    @merchants = Merchant.all
+  end
+
   def show
     @merchant = Merchant.find(params[:id])
   end
@@ -12,6 +18,6 @@ class Admin::MerchantsController < ApplicationController
       merchant.enable
       flash[:notice] = "This merchant\'s account is now enabled."
     end
-    redirect_to "/merchants"
+    redirect_to "/admin/merchants"
   end
 end

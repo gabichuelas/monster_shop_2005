@@ -22,7 +22,7 @@ RSpec.describe 'Admin merchant index page' do
   describe 'As an Admin user' do
     describe "When I visit the admin's merchant index page" do
       it 'I see a \"disable\" button next to any merchants who are not yet disabled' do
-        visit '/merchants'
+        visit '/admin/merchants'
 
         within "#merchant-#{@meg.id}" do
           expect(page).to have_button('Disable')
@@ -35,11 +35,11 @@ RSpec.describe 'Admin merchant index page' do
 
       describe "When I click on the \"disable\" button" do
         it 'I\'m returned to admin\'s merchant index and a flash message informs me that merchant\'s account is now disabled' do
-          visit '/merchants'
+          visit '/admin/merchants'
 
           within "#merchant-#{@meg.id}" do
             click_button('Disable')
-            expect(current_path).to eq('/merchants')
+            expect(current_path).to eq('/admin/merchants')
           end
 
           expect(page).to have_content('This merchant\'s account is now disabled.')
@@ -53,7 +53,7 @@ RSpec.describe 'Admin merchant index page' do
       describe 'When I visit the merchant index page' do
         it 'And I click on the "disable" button for an enabled merchant; Then all of that merchant\'s items should be deactivated' do
 
-          visit "/merchants"
+          visit "/admin/merchants"
 
           within "#merchant-#{@brian.id}" do
             click_button('Disable')
@@ -65,16 +65,16 @@ RSpec.describe 'Admin merchant index page' do
 
       describe "When I click on the \"enable\" button" do
         it 'I\'m returned to admin\'s merchant index and a flash message informs me that merchant\'s account is now enabled' do
-          visit '/merchants'
+          visit '/admin/merchants'
 
           within "#merchant-#{@meg.id}" do
             click_button('Disable')
-            expect(current_path).to eq('/merchants')
+            expect(current_path).to eq('/admin/merchants')
           end
 
           within "#merchant-#{@meg.id}" do
             click_button('Enable')
-            expect(current_path).to eq('/merchants')
+            expect(current_path).to eq('/admin/merchants')
           end
 
           expect(page).to have_content('This merchant\'s account is now enabled.')
@@ -88,19 +88,41 @@ RSpec.describe 'Admin merchant index page' do
       describe 'When I visit the merchant index page' do
         it 'And I click on the "enable" button for an disabled merchant; Then all of that merchant\'s items should be activated' do
 
-          visit "/merchants"
+          visit "/admin/merchants"
 
           within "#merchant-#{@brian.id}" do
             click_button('Disable')
-            expect(current_path).to eq('/merchants')
+            expect(current_path).to eq('/admin/merchants')
           end
 
           within "#merchant-#{@brian.id}" do
             click_button('Enable')
-            expect(current_path).to eq('/merchants')
+            expect(current_path).to eq('/admin/merchants')
           end
 
           expect(@brian.items.all? {|item| item.active?}).to eq(true)
+        end
+      end
+
+      it 'I see all merchants in the system; their names link to their merchant dashboard (/admin/merchants/5)' do
+
+        visit "/admin/merchants"
+        expect(page).to have_link("Brian's Dog Shop")
+        expect(page).to have_link("Meg's Bike Shop")
+        click_on "Meg's Bike Shop"
+        expect(current_path).to eq("/admin/merchants/#{@meg.id}")
+      end
+
+      it 'Next to each merchant\'s name I see their city and state' do
+
+        visit "/admin/merchants"
+
+        within "#merchant-#{@brian.id}" do
+          expect(page).to have_content('Denver, CO')
+        end
+
+        within "#merchant-#{@meg.id}" do
+          expect(page).to have_content('Denver, CO')
         end
       end
     end

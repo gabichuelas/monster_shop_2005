@@ -925,7 +925,7 @@ Instead I see a notice next to the item indicating I cannot fulfill this item
 Admins will need a way to view a list of all regular users and view their profile and order data.
 
 ```
-[ ] done
+[X] done
 
 User Story 52, Admin Merchant Index Page
 
@@ -939,7 +939,7 @@ I see an "enable" button next to any merchants whose accounts are disabled
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 53, Admin User Index Page
 
@@ -954,7 +954,7 @@ Next to each user's name I see what type of user they are
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 54, Admin User Profile Page
 

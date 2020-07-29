@@ -1,2 +1,7 @@
 <h1><%= @user.name %></h1>
-<!-- not being used yet, just placeholder -->
+<h4><%= @user.address %></h4>
+<h4><%= @user.city %>, <%= @user.state %></h4>
+<h4><%= @user.zip %></h4>
+<h4><%= @user.email %></h4>
+
+<%= link_to 'Change Password', "/passwords/edit" %>
