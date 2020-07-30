@@ -2,12 +2,8 @@ class Merchant::ItemsController < ApplicationController
   before_action :require_merchant
 
   def index
-    if params[:merchant_id]
-      @merchant = Merchant.find(params[:merchant_id])
-      @items = @merchant.items
-    else
-      @items = Item.all
-    end
+    @merchant = Merchant.find(current_user.merchant_id)
+    @items = @merchant.items
   end
 
   def new
