@@ -6,6 +6,19 @@ RSpec.describe 'item delete', type: :feature do
       bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
       chain = bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
 
+      employee = User.create!(name: "Bill Nye",
+                                    address: "Wilmur Lane",
+                                    city: "Denver",
+                                    state: "Colorado",
+                                    zip: "80202",
+                                    email: "example_merchant_employee@hotmail.com",
+                                    password: "qwer",
+                                    role: 1,
+                                    merchant_id: bike_shop.id)
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(employee)
+
+
       visit "/items/#{chain.id}"
 
       expect(page).to have_link("Delete Item")
@@ -20,6 +33,19 @@ RSpec.describe 'item delete', type: :feature do
       bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80203)
       chain = bike_shop.items.create(name: "Chain", description: "It'll never break!", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
       review_1 = chain.reviews.create(title: "Great place!", content: "They have great bike stuff and I'd recommend them to anyone.", rating: 5)
+
+      employee = User.create!(name: "Bill Nye",
+                                    address: "Wilmur Lane",
+                                    city: "Denver",
+                                    state: "Colorado",
+                                    zip: "80202",
+                                    email: "example_merchant_employee@hotmail.com",
+                                    password: "qwer",
+                                    role: 1,
+                                    merchant_id: bike_shop.id)
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(employee)
+
 
       visit "/items/#{chain.id}"
 

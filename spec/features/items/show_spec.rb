@@ -48,4 +48,11 @@ RSpec.describe 'item show page', type: :feature do
       expect(page).to_not have_content("All Reviews")
     end
   end
+
+  it 'Cannot see edit/delete button, if not logged in as a merchant' do
+    visit "/items/#{@chain.id}"
+
+    expect(page).to_not have_button("Delete Item")
+    expect(page).to_not have_button("Edit Item")
+  end
 end
