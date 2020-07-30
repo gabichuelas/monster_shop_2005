@@ -94,6 +94,41 @@ RSpec.describe 'As a merchant employee' do
             expect(page).to_not have_button("Fulfill Order")
           end
         end
+
+        it "I cannot fulfill an order due to lack of inventory" do
+          chain2 = @meg.items.create(name: "Chain2", description: "It'll never break! Ever", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
+          order_5 = @user1.orders.create!(name: 'Bob Vance', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, status: "pending")
+          item_order_4 = ItemOrder.create!(item: chain2, price: chain2.price, quantity: 10, order: order_5)
+
+          visit "/merchant/orders/#{order_5.id}"
+
+          within "#item-#{chain2.id}" do
+            expect(page).to have_content("Insufficient Inventory To Fulfill This Order")
+          end
+        end
+
+        it 'when all items in an order have been fulfilled by their merchants, the order status changes from pending to packaged' do
+          chain2 = @meg.items.create(name: "Chain2", description: "It'll never break! Ever", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
+          chain3 = @meg.items.create(name: "Chain3", description: "The best chain", price: 75, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
+
+          order_5 = @user1.orders.create!(name: 'Bob Vance', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, status: "pending")
+          item_order_4 = ItemOrder.create!(item: chain2, price: chain2.price, quantity: 1, order: order_5)
+          item_order_5 = ItemOrder.create!(item: chain3, price: chain3.price, quantity: 2, order: order_5)
+
+          visit "/merchant/orders/#{order_5.id}"
+
+          within "#item-#{chain2.id}" do
+            click_on "Fulfill Order"
+          end
+          
+          expect(page).to have_content("Status: pending")
+
+          within "#item-#{chain3.id}" do
+            click_on "Fulfill Order"
+          end
+
+          expect(page).to have_content("Status: packaged")
+        end
       end
     end
   end
