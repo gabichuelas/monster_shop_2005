@@ -94,6 +94,16 @@ RSpec.describe 'As a merchant employee' do
             expect(page).to_not have_button("Fulfill Order")
           end
         end
+
+        it "I cannot fulfill an order due to lack of inventory" do
+          chain2 = @meg.items.create(name: "Chain2", description: "It'll never break! Ever", price: 50, image: "https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588", inventory: 5)
+          order_5 = @user1.orders.create!(name: 'Bob Vance', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033, status: "pending")
+          item_order_4 = ItemOrder.create!(item: chain2, price: chain2.price, quantity: 10, order: order_5)
+
+          visit "/merchant/orders/#{order_5.id}"
+
+          expect(page).to have_content("Insufficient Inventory To Fulfill This Order")
+        end
       end
     end
   end
