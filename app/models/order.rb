@@ -15,7 +15,7 @@ class Order <ApplicationRecord
 
   def cancel_items
     item_orders.each do |item_order|
-      item_order.update(status: 1)
+      item_order.update(status: 0)
     end
   end
 
