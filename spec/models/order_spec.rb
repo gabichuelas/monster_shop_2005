@@ -34,8 +34,8 @@ describe Order, type: :model do
 
       @order_1 = @user.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17033)
 
-      @order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
-      @order_1.item_orders.create!(item: @pull_toy, price: @pull_toy.price, quantity: 3)
+      @item_order1 = @order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
+      @item_order2 = @order_1.item_orders.create!(item: @pull_toy, price: @pull_toy.price, quantity: 3)
     end
     it 'grandtotal' do
       expect(@order_1.grandtotal).to eq(230)
@@ -95,6 +95,24 @@ describe Order, type: :model do
       order_10.item_orders.create!(item: dog_bone, price: dog_bone.price, quantity: 2)
 
       expect(order_9.total_sum(jack)).to eq(200)
+    end
+
+    it 'total_quantity' do
+      expect(@order_1.total_quantity).to eq(5)
+    end
+
+    it 'cancel_items' do
+      @order_1.cancel_items
+
+      expect(@order_1.status).to eq("cancelled")
+    end
+
+    it 'restock' do
+      @order_1.cancel_items
+      @order_1.restock
+
+      expect(@item_order1.quantity).to eq(0)
+      expect(@item_order2.quantity).to eq(0)
     end
   end
 end
