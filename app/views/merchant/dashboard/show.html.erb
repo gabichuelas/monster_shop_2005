@@ -12,9 +12,9 @@
 <section class="orders">
   <h2>Pending Orders:</h2>
   <% @merchant.pending_orders.each do |order| %>
-    <span>Order ID: <%= link_to "#{order.id}", "/merchant/orders/#{order.id}" %></span>
-    <span>Date Created: <%= order.created_at %></span>
-    <span>Number of items in this order: <%= order.total_items(@merchant) %></span>
-    <span>Total Value: <%= number_to_currency(order.total_sum(@merchant)) %></span>
+    <p>Order ID: <%= link_to "#{order.id}", "/merchant/orders/#{order.id}" %></p>
+    <p>Date Created: <%= order.created_at %></p>
+    <p>Number of items in this order: <%= order.total_items(@merchant) %></p>
+    <p>Total Value: <%= number_to_currency(order.total_sum(@merchant)) %></p><br>
   <% end %>
 </section>
