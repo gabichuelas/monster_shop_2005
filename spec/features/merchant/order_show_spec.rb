@@ -102,7 +102,9 @@ RSpec.describe 'As a merchant employee' do
 
           visit "/merchant/orders/#{order_5.id}"
 
-          expect(page).to have_content("Insufficient Inventory To Fulfill This Order")
+          within "#item-#{chain2.id}" do
+            expect(page).to have_content("Insufficient Inventory To Fulfill This Order")
+          end
         end
       end
     end
