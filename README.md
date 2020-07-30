@@ -1,5 +1,23 @@
 # Monster Shop
-BE Mod 2 Week 4/5 Group Project
+### BE Mod 2 Week 4/5 Group Project
+
+<p align="center">
+  <a href="https://pure-waters-06944.herokuapp.com/">View our Monster Shop 2003</a>
+ </p>
+
+### Team
+<p>
+<a href="https://github.com/IamNorma">Norma Lopez</a>
+</p>
+<p>
+<a href="https://github.com/gabichuelas">Gaby Mendez</a>
+</p>
+<p>
+<a href="https://github.com/Jonathan-M-Wilson">Jonathan Wilson</a>
+</p>
+<p>
+<a href="https://github.com/Ashkanthegreat"> Ashkan Abbasi</a>
+</p>
 
 ## Background and Description
 
