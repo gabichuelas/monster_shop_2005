@@ -47,5 +47,30 @@ RSpec.describe Cart do
       expect(@cart.subtotal(@ogre)).to eq(20)
       expect(@cart.subtotal(@giant)).to eq(100)
     end
+
+    it 'subtract_quantity()' do
+      cart = Cart.new({@ogre.id => 5})
+      cart.subtract_quantity(@ogre.id)
+      expect(cart.contents[@ogre.id]).to eq(4)
+    end
+
+    it 'add_quantity()' do
+      cart = Cart.new({@ogre.id => 5})
+      cart.add_quantity(@ogre.id)
+      expect(cart.contents[@ogre.id]).to eq(6)
+    end
+
+    it 'quantity_equals_zero?()' do
+      cart = Cart.new({@ogre.id => 5})
+      cart.quantity_equals_zero?(@ogre.id)
+
+      expect(cart.contents[@ogre.id]).to eq(5)
+      expect(cart.quantity_equals_zero?(@ogre.id)).to eq(false)
+
+      5.times { cart.subtract_quantity(@ogre.id) }
+
+      expect(cart.contents[@ogre.id]).to eq(0)
+      expect(cart.quantity_equals_zero?(@ogre.id)).to eq(true)
+    end
   end
 end
