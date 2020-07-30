@@ -8,9 +8,5 @@ class ItemOrder <ApplicationRecord
     price * quantity
   end
 
-  def have_enough?
-    item.inventory < quantity
-  end
-
   enum status: %w(unfulfilled fulfilled)
 end
