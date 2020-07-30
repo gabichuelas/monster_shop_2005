@@ -52,6 +52,8 @@ bike_horn = bike_shop.items.create(name: "Honk Honk", description: "Everyone wil
 
 bike_lock = bike_shop.items.create(name: "Krytonite Lock", description: "Keep your lock safe while you're away.", price: 60, image: "https://i5.walmartimages.com/asr/875f4ecf-877b-41ad-8754-eb67e54e0fdd_1.c38843c2225b1b0ed22a6d5fe3fed788.jpeg", inventory: 4)
 
+shift_cable = bike_shop.items.create(name: "Shift Cable, Road", description: "Shift cable for STI levers", price: 6, inventory: 100)
+
 #dog_shop items
 pull_toy = dog_shop.items.create(name: "Pull Toy", description: "Great pull toy!", price: 10, image: "http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg", inventory: 32)
 
