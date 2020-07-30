@@ -128,3 +128,29 @@ Note hidden password input fields.
   <%= submit_tag 'Save Profile' %>
 <% end %>
 ```
+
+## Schema
+![Alt text](public/schema.png?raw=true "Optional Title")
+
+## Screenshots
+
+### All Items
+![Alt text](public/all_items.png?raw=true "Optional Title")
+
+### Merchant's Items Show Page
+![Alt text](public/merchant_items_show_page.png?raw=true "Optional Title")
+
+### Item Show Page
+![Alt text](public/item_show_page.png?raw=true "Optional Title")
+
+### Cart Show Page
+![Alt text](public/cart_show_page.png?raw=true "Optional Title")
+
+### Checkout Show Page
+![Alt text](public/checkout_show_page.png?raw=true "Optional Title")
+
+### Login Show Page
+![Alt text](public/login_show.png?raw=true "Optional Title")
+
+### Merchant Dashboard
+![Alt text](public/merchant_dashboard.png?raw=true "Optional Title")
