@@ -96,5 +96,9 @@ describe Order, type: :model do
 
       expect(order_9.total_sum(jack)).to eq(200)
     end
+
+    it 'total_quantity' do
+      expect(@order_1.total_quantity).to eq(5)
+    end
   end
 end
