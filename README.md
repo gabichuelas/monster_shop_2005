@@ -743,7 +743,7 @@ Merchants need CRUD functionality for items in the database. These stories will 
 Admin users share all management functionality, but the routes will be much longer, like "/admin/merchants/8/items" and "/admin/merchants/8/items/6" and so on.
 
 ```
-[ ] done
+[X] done
 
 User Story 42, Merchant deactivates an item
 
@@ -764,7 +764,7 @@ I see the item is now inactive
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 43, Merchant activates an item
 
@@ -871,7 +871,7 @@ Merchants must "fulfill" each ordered item for users. They will visit an order s
 Admin can ship orders (taken care of in user story 33). Admin can fulfill items in an order on behalf of a merchant (this is an extension).
 
 ```
-[ ] done
+[X] done
 
 User Story 49, Merchant sees an order show page
 
@@ -888,7 +888,7 @@ For each item, I see the following information:
 ```
 
 ```
-[ ] done
+[X] done
 
 User Story 50, Merchant fulfills part of an order
 
