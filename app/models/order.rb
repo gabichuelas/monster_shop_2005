@@ -17,6 +17,7 @@ class Order <ApplicationRecord
     item_orders.each do |item_order|
       item_order.update(status: 0)
     end
+    update(status: "cancelled")
   end
 
   def restock
