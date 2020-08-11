@@ -1,5 +1,5 @@
 <h1>Edit Your Profile</h1>
-<%= form_tag "/users/edit", method: :patch do %>
+<%= form_tag "/users", method: :patch do %>
   <%= text_field_tag :name, current_user.name, placeholder: 'Name' %><br>
   <%= text_field_tag :address, current_user.address, placeholder: 'Address' %><br>
   <%= text_field_tag :city, current_user.city, placeholder: 'City' %><br>
