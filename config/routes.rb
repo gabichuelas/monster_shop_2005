@@ -2,14 +2,17 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "/", to: "dashboard#index"
+
     resources :users, only: [:index, :show]
     # get "/users/:user_id", to: "users#show"
-    patch "/orders/:id", to: "orders#update"
-    get "/merchants/:id", to: "merchants#show"
-    get "/merchants", to: "merchants#index"
-    patch "/merchants/:id", to: "merchants#update"
-    get "merchants/:id/items", to: "items#index"
     # get "/users", to: "users#index"
+    resources :orders, only: [:update]
+    # patch "/orders/:id", to: "orders#update"
+    resources :merchants, only: [:show, :index, :update]
+    # get "/merchants/:id", to: "merchants#show"
+    # get "/merchants", to: "merchants#index"
+    # patch "/merchants/:id", to: "merchants#update"
+    get "merchants/:id/items", to: "items#index"
   end
 
   namespace :merchant do
