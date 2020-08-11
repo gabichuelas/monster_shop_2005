@@ -17,15 +17,19 @@ Rails.application.routes.draw do
 
   namespace :merchant do
     get "/", to: "dashboard#show"
-    get "/items", to: "items#index"
-    get "/items/new", to: "items#new"
-    post "/items", to: "items#create"
-    get "/orders/:id", to: "orders#show"
-    get '/items/:id/edit', to: 'items#edit'
-    patch "/items/:id", to: "items#update"
-    patch "/items/:id/update_status", to: "items#update_status"
-    delete 'items/:id', to: 'items#destroy'
-    patch  "/item_orders/:id", to: "item_orders#update"
+    resources :items
+    match "/items/:id/update_status" => 'items#update_status', :via => :patch
+    # patch "/items/:id/update_status", to: "items#update_status"
+    # get "/items", to: "items#index"
+    # get "/items/new", to: "items#new"
+    # post "/items", to: "items#create"
+    # get '/items/:id/edit', to: 'items#edit'
+    # patch "/items/:id", to: "items#update"
+    # delete 'items/:id', to: 'items#destroy'
+    resources :orders, only: [:show]
+    # get "/orders/:id", to: "orders#show"
+    resources :item_orders, only: [:update]
+    # patch  "/item_orders/:id", to: "item_orders#update"
   end
 
   get "/", to: "welcome#index"
