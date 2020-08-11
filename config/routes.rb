@@ -82,7 +82,9 @@ Rails.application.routes.draw do
   patch "/users/edit", to: "users#update"
 
   # EDIT PASSWORD
-  get "passwords/edit", to: "passwords#edit"
-  patch "passwords/edit", to: "passwords#update"
+  resource :passwords, only: [:edit, :update]
+
+  # get "passwords/edit", to: "passwords#edit"
+  # patch "passwords/edit", to: "passwords#update"
 
 end
