@@ -58,12 +58,16 @@ Rails.application.routes.draw do
   delete "/cart", to: "cart#empty"
   delete "/cart/:item_id", to: "cart#remove_item"
 
-  get "/orders/new", to: "orders#new"
-  post "/orders", to: "orders#create"
-  get "/orders/:id", to: "orders#show"
-  delete "/orders/:id", to: "orders#destroy"
+  resources :orders, only: [:new, :create, :show, :destroy]
+  # get "/orders/new", to: "orders#new"
+  # post "/orders", to: "orders#create"
+  # get "/orders/:id", to: "orders#show"
+  # delete "/orders/:id", to: "orders#destroy"
 
   # PROFILE ORDERS
+  # this refactor didn't work:
+  # resources :orders, only: [:index, :show]
+  # used original
   get "/profile/orders", to: "orders#index"
   get "/profile/orders/:id", to: "orders#show"
 
