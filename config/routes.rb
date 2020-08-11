@@ -1,19 +1,11 @@
 Rails.application.routes.draw do
-
   get "/", to: "welcome#index"
 
   namespace :admin do
     get "/", to: "dashboard#index"
-
     resources :users, only: [:index, :show]
-    # get "/users/:user_id", to: "users#show"
-    # get "/users", to: "users#index"
     resources :orders, only: [:update]
-    # patch "/orders/:id", to: "orders#update"
     resources :merchants, only: [:show, :index, :update]
-    # get "/merchants/:id", to: "merchants#show"
-    # get "/merchants", to: "merchants#index"
-    # patch "/merchants/:id", to: "merchants#update"
     get "merchants/:id/items", to: "items#index"
   end
 
@@ -21,52 +13,18 @@ Rails.application.routes.draw do
     get "/", to: "dashboard#show"
     resources :items
     match "/items/:id/update_status" => 'items#update_status', :via => :patch
-    # patch "/items/:id/update_status", to: "items#update_status"
-    # get "/items", to: "items#index"
-    # get "/items/new", to: "items#new"
-    # post "/items", to: "items#create"
-    # get '/items/:id/edit', to: 'items#edit'
-    # patch "/items/:id", to: "items#update"
-    # delete 'items/:id', to: 'items#destroy'
     resources :orders, only: [:show]
-    # get "/orders/:id", to: "orders#show"
     resources :item_orders, only: [:update]
-    # patch  "/item_orders/:id", to: "item_orders#update"
   end
 
   resources :merchants do
-  # get "/merchants", to: "merchants#index"
-  # get "/merchants/new", to: "merchants#new"
-  # get "/merchants/:id", to: "merchants#show"
-  # post "/merchants", to: "merchants#create"
-  # get "/merchants/:id/edit", to: "merchants#edit"
-  # patch "/merchants/:id", to: "merchants#update"
-  # delete "/merchants/:id", to: "merchants#destroy"
     resources :items, only: [:index, :new, :create]
-    # get "/merchants/:merchant_id/items", to: "items#index"
-    # get "/merchants/:merchant_id/items/new", to: "items#new"
-    # post "/merchants/:merchant_id/items", to: "items#create"
   end
-
-  # resources :items, except: [:new, :create]
-  # get "/items", to: "items#index"
-  # get "/items/:id", to: "items#show"
-  # get "/items/:id/edit", to: "items#edit"
-  # patch "/items/:id", to: "items#update"
-  #
-  # delete "/items/:id", to: "items#destroy"
 
   resources :reviews, only: [:edit, :update, :destroy]
   resources :items, except: [:new, :create] do
     resources :reviews, only: [:new, :create]
   end
-
-  # get "/items/:item_id/reviews/new", to: "reviews#new"
-  # post "/items/:item_id/reviews", to: "reviews#create"
-
-  # get "/reviews/:id/edit", to: "reviews#edit"
-  # patch "/reviews/:id", to: "reviews#update"
-  # delete "/reviews/:id", to: "reviews#destroy"
 
   post "/cart/:item_id", to: "cart#add_item"
   get "/cart", to: "cart#show"
@@ -75,15 +33,10 @@ Rails.application.routes.draw do
   delete "/cart/:item_id", to: "cart#remove_item"
 
   resources :orders, only: [:new, :create, :show, :destroy]
-  # get "/orders/new", to: "orders#new"
-  # post "/orders", to: "orders#create"
-  # get "/orders/:id", to: "orders#show"
-  # delete "/orders/:id", to: "orders#destroy"
 
   # PROFILE ORDERS
-  # this refactor didn't work:
-  # resources :orders, only: [:index, :show]
-  # used original
+  # refactoring this isn't worthwhile bc of the 'profile' part in the route
+  # too much functionality depends on this.
   get "/profile/orders", to: "orders#index"
   get "/profile/orders/:id", to: "orders#show"
 
@@ -99,12 +52,6 @@ Rails.application.routes.draw do
 
   # EDIT USER
   resource :users, only: [:edit, :update]
-  # get "/users/edit", to: "users#edit"
-  # patch "/users/edit", to: "users#update"
-
   # EDIT PASSWORD
   resource :passwords, only: [:edit, :update]
-  # get "passwords/edit", to: "passwords#edit"
-  # patch "passwords/edit", to: "passwords#update"
-
 end
