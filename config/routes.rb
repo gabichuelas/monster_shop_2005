@@ -78,12 +78,12 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
 
   # EDIT USER
-  get "/users/edit", to: "users#edit"
-  patch "/users/edit", to: "users#update"
+  resource :users, only: [:edit, :update]
+  # get "/users/edit", to: "users#edit"
+  # patch "/users/edit", to: "users#update"
 
   # EDIT PASSWORD
   resource :passwords, only: [:edit, :update]
-
   # get "passwords/edit", to: "passwords#edit"
   # patch "passwords/edit", to: "passwords#update"
 
